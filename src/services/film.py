@@ -1,6 +1,6 @@
 from functools import lru_cache
 from typing import Optional
-
+import uuid
 from elasticsearch import AsyncElasticsearch, NotFoundError
 from fastapi import Depends
 from redis.asyncio import Redis
