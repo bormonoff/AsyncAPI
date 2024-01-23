@@ -1,5 +1,6 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
 import os
+
+from pydantic_settings import BaseSettings
 from logging import config as logging_config
 
 from core.logger import LOGGING
@@ -17,7 +18,7 @@ class Settings(BaseSettings):
     ELASTIC_PORT: int
     REDIS_HOST: str
     REDIS_PORT: int
-    
+
 
     class Config:
         env_file = ".env"
