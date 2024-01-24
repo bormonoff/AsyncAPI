@@ -5,13 +5,17 @@ description = "Async API Sprint 1"
 authors = ["nizdolin <nizdolin@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 fastapi = "^0.109.0"
 pydantic = "^2.5.3"
 elasticsearch = "^8.12.0"
 python-dotenv = "^1.0.0"
 pydantic-settings = "^2.1.0"
 uvicorn = "^0.26.0"
+redis = "^5.0.1"
+uvloop = "^0.19.0"
+orjson = "^3.9.12"
+aiohttp = "^3.9.1"
 
 
 [tool.poetry.group.dev.dependencies]

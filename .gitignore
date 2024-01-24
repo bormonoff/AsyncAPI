@@ -6,6 +6,7 @@
 **.chroma/
 /admin_panel/node_modules
 /admin_panel/lk/static/libs/node
+.vscode/
 
 # Distribution / packaging
 .Python
