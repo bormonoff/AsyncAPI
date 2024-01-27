@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from services.film import FilmService, get_film_service
 from .genres import Genre
@@ -11,11 +11,14 @@ from typing import List, Optional
 router = APIRouter()
 
 
-class Film(BaseModel):
-    id: str
+class FilmBase(BaseModel):
+    uuid: str
     title: str
-    description: str | None
     imdb_rating: float | None
+
+
+class Film(FilmBase):
+    description: str | None
     genre: list[Genre]
     actors: list[Person]
     writers: list[Person]
@@ -39,20 +42,23 @@ async def film_details(film_id: str, film_service: FilmService = Depends(get_fil
         directors=film.directors
         )
 
-
-class FilmBase(BaseModel):
-    uuid: str
-    title: str
-    imdb_rating: float
-
-
 @router.get('/', response_model=List[FilmBase])
-async def get_popular_films(sort: str,
+async def get_popular_films(sort: str = "imdb_rating",
                             genre: Optional[str] = None,
                             page_size: int = 10,
                             page_number: int = 1,
                             film_service: FilmService = Depends(get_film_service)
-) -> list[FilmBase]:
-    """Get the list of the films sorted by a field_to_sort variable and return the data to a client"""
+) -> List[FilmBase]:
+    """Get the list of the films sorted by a field_to_sort variable and return the data to a client."""
     films = await film_service.get_films_sorted_by_field(sort, genre, page_size, page_number)
+    return films
+
+@router.get('/search/', response_model=List[FilmBase])
+async def search_films(pattern: str = "star",
+                       page_size: int = 10,
+                       page_number: int = 1,
+                       film_service: FilmService = Depends(get_film_service)
+) -> List[FilmBase]:
+    """Get the list of the films with the pattern in the title and return the data to a client."""
+    films = await film_service.get_films_with_pattern(pattern, page_size, page_number)
     return films

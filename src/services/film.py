@@ -12,13 +12,6 @@ from models.film import Film
 
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
-def transform_movie(movie: Dict[str, Any]) -> Dict[str, Any]:
-    result = {}
-    result["uuid"] = movie["id"]
-    result["title"] = movie["title"]
-    result["imdb_rating"] = movie["imdb_rating"]
-    return result
-
 
 class FilmService:
     def __init__(self, redis: Redis, elastic: AsyncElasticsearch):
@@ -38,24 +31,58 @@ class FilmService:
 
         return film
 
-    async def get_films_sorted_by_field(self, field_to_sort: str, genre: Optional[str], page_size: int, page_number: int):
+    async def get_films_sorted_by_field(self, field_to_sort: str,
+                                        genre: Optional[str], page_size: int,
+                                        page_number: int
+    ) -> List[Dict[str, str]]:
         """Return a list of the films sorted by a field_to_sort variable.
 
         Encapsulates elastic specific format and returnes data as a following list:
         [{uuid: ..., title: ..., imdb_rating}, ...]
 
         """
+        request = self._create_request(page_size=page_size, page_number=page_number,
+                                 field_to_sort=field_to_sort, genre=genre)
+        data = await self.elastic.search(**request)
+        result = [self._transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
+        return result
+
+    async def get_films_with_pattern(self, pattern: str, page_size: int,
+                                     page_number: int
+    ) -> List[Dict[str, str]]:
+        """Return a list of the films with the pattern.
+
+        Encapsulates elastic specific format and returnes data as a following list:
+        [{uuid: ..., title: ..., imdb_rating}, ...]
+
+        """
+        request = self._create_request(page_size=page_size, page_number=page_number, pattern=pattern)
+        data = await self.elastic.search(**request)
+        result = [self._transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
+        return result
+
+    def _create_request(self, **kwargs) -> Dict[str, str]:
         request = {
             "index": "movies",
-            "size": page_size,
-            "from_": page_size * (page_number - 1),
+            "size": kwargs["page_size"],
+            "from_": kwargs["page_size"] * (kwargs["page_number"] - 1),
             "source": ["id", "title", "imdb_rating"],
-            "sort": {field_to_sort: {"order": "desc"}},
-            }
-        if genre:
-            request["query"] = {"match": {"genre": genre}}
-        data = await self.elastic.search(**request)
-        result = [transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
+        }
+
+        if kwargs.get("field_to_sort"):
+            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}},
+        if kwargs.get("genre"):
+            request["query"] = {"match": {"genre": kwargs["genre"]}}
+        if kwargs.get("pattern"):
+            request["query"] = {"match": {"title": kwargs["pattern"]}}
+
+        return request
+
+    def _transform_movie(self, movie: Dict[str, Any]) -> Dict[str, Any]:
+        result = {}
+        result["uuid"] = movie["id"]
+        result["title"] = movie["title"]
+        result["imdb_rating"] = movie["imdb_rating"]
         return result
 
     async def _get_film_from_elastic(self, film_id: str) -> Optional[Film]:
@@ -85,3 +112,4 @@ def get_film_service(
         elastic: AsyncElasticsearch = Depends(get_elastic),
 ) -> FilmService:
     return FilmService(redis, elastic)
+
