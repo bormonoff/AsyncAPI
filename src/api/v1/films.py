@@ -1,10 +1,12 @@
 from http import HTTPStatus
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from services.film import FilmService, get_film_service
 from .genres import Genre
 from .persons import Person
+
+from typing import List, Optional
 
 router = APIRouter()
 
@@ -36,3 +38,21 @@ async def film_details(film_id: str, film_service: FilmService = Depends(get_fil
         writers=film.writers,
         directors=film.directors
         )
+
+
+class FilmBase(BaseModel):
+    uuid: str
+    title: str
+    imdb_rating: float
+
+
+@router.get('/', response_model=List[FilmBase])
+async def get_popular_films(sort: str,
+                            genre: Optional[str] = None,
+                            page_size: int = 10,
+                            page_number: int = 1,
+                            film_service: FilmService = Depends(get_film_service)
+) -> list[FilmBase]:
+    """Get the list of the films sorted by a field_to_sort variable and return the data to a client"""
+    films = await film_service.get_films_sorted_by_field(sort, genre, page_size, page_number)
+    return films
