@@ -11,8 +11,8 @@ logging_config.dictConfig(LOGGING)
 class Settings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
-    ELASTICSEARCH_DSN: str
-    ELASTICSEARCH_INDEX: str
+    ELASTIC_DSN: str
+    ELASTIC_INDEX: str
     PROJECT_NAME: str
     ELASTIC_HOST: str
     ELASTIC_PORT: int
