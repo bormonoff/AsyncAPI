@@ -1,14 +1,13 @@
 from functools import lru_cache
-from typing import Optional, Dict, List, Any
-import uuid
+from typing import Any, Dict, List, Optional
+
 from elasticsearch import AsyncElasticsearch, NotFoundError
 from fastapi import Depends
-
 from redis.asyncio import Redis
+
 from db.elastic import get_elastic
 from db.redis import get_redis
 from models.film import Film
-
 
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
@@ -23,11 +22,11 @@ class FilmService:
         """Optionally return a film from ES."""
         # TODO create redis cache
         # film = await self._film_from_cache(film_id)
-        if not film:
-            film = await self._get_film_from_elastic(film_id)
-            if not film:
-                return None
-            await self._put_film_to_cache(film)
+        # if not film:...
+        film = await self._get_film_from_elastic(film_id)
+        # if not film:
+        #     return None
+        # await self._put_film_to_cache(film)
 
         return film
 
@@ -44,7 +43,7 @@ class FilmService:
         request = self._create_request(page_size=page_size, page_number=page_number,
                                  field_to_sort=field_to_sort, genre=genre)
         data = await self.elastic.search(**request)
-        result = [self._transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
+        result = [self._handle_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
         return result
 
     async def get_films_with_pattern(self, pattern: str, page_size: int,
@@ -58,7 +57,7 @@ class FilmService:
         """
         request = self._create_request(page_size=page_size, page_number=page_number, pattern=pattern)
         data = await self.elastic.search(**request)
-        result = [self._transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
+        result = [self._handle_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
         return result
 
     def _create_request(self, **kwargs) -> Dict[str, str]:
@@ -78,7 +77,7 @@ class FilmService:
 
         return request
 
-    def _transform_movie(self, movie: Dict[str, Any]) -> Dict[str, Any]:
+    def _handle_movie(self, movie: Dict[str, Any]) -> Dict[str, Any]:
         result = {}
         result["uuid"] = movie["id"]
         result["title"] = movie["title"]
@@ -87,10 +86,10 @@ class FilmService:
 
     async def _get_film_from_elastic(self, film_id: str) -> Optional[Film]:
         try:
-            doc = await self.elastic.get(index='movies', id=film_id)
+            data = await self.elastic.get(index='movies', id=film_id)
         except NotFoundError:
             return None
-        return Film(**doc['_source'])
+        return self._handle_single_movie(data["_source"])
 
     async def _film_from_cache(self, film_id: str) -> Optional[Film]:
         data = await self.redis.get(film_id)
@@ -99,6 +98,16 @@ class FilmService:
 
         film = Film.model_validate_json(data)
         return film
+
+    def _handle_single_movie(self, movie: Dict[str, Any]) -> Film:
+        return Film(uuid=movie["id"],
+                    title=movie["title"],
+                    imdb_rating=movie["imdb_rating"],
+                    description=movie["description"],
+                    director=movie["director"],
+                    actors=movie["actors_names"],
+                    writers=movie["writers_names"],
+                    genre=movie["genre"])
 
     async def _put_film_to_cache(self, film: Film):
         # Redis set func doc: https://redis.io/commands/set/

@@ -1,28 +1,12 @@
 from http import HTTPStatus
-from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
-
-from services.film import FilmService, get_film_service
-from .genres import Genre
-from .persons import Person
-
 from typing import List, Optional
 
+from fastapi import APIRouter, Depends, HTTPException
+
+from models.film import Film, FilmBase
+from services.film import FilmService, get_film_service
+
 router = APIRouter()
-
-
-class FilmBase(BaseModel):
-    uuid: str
-    title: str
-    imdb_rating: float | None
-
-
-class Film(FilmBase):
-    description: str | None
-    genre: list[Genre]
-    actors: list[Person]
-    writers: list[Person]
-    directors: list[Person]
 
 
 @router.get('/{film_id}', response_model=Film)
@@ -31,16 +15,7 @@ async def film_details(film_id: str, film_service: FilmService = Depends(get_fil
     film = await film_service.get_by_id(film_id)
     if not film:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail='film not found')
-    return Film(
-        id=film.id,
-        title=film.title,
-        description=film.description,
-        imdb_rating=film.imdb_rating,
-        genre=film.genre,
-        actors=film.actors,
-        writers=film.writers,
-        directors=film.directors
-        )
+    return film
 
 @router.get('/', response_model=List[FilmBase])
 async def get_popular_films(sort: str = "imdb_rating",
