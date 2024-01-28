@@ -9,15 +9,15 @@ from services.film import FilmService, get_film_service
 router = APIRouter()
 
 
-@router.get('/{film_id}', response_model=Film)
+@router.get("/{film_id}", response_model=Film)
 async def film_details(film_id: str, film_service: FilmService = Depends(get_film_service)) -> Film:
-    """Find and return the film wia it's id."""
+    """Find and return the film wia it"s id."""
     film = await film_service.get_by_id(film_id)
     if not film:
-        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail='film not found')
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="film not found")
     return film
 
-@router.get('/', response_model=List[FilmBase])
+@router.get("/", response_model=List[FilmBase])
 async def get_popular_films(sort: str = "imdb_rating",
                             genre: Optional[str] = None,
                             page_size: int = 10,
@@ -28,7 +28,7 @@ async def get_popular_films(sort: str = "imdb_rating",
     films = await film_service.get_films_sorted_by_field(sort, genre, page_size, page_number)
     return films
 
-@router.get('/search/', response_model=List[FilmBase])
+@router.get("/search/", response_model=List[FilmBase])
 async def search_films(pattern: str = "star",
                        page_size: int = 10,
                        page_number: int = 1,

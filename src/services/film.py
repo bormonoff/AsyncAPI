@@ -86,18 +86,10 @@ class FilmService:
 
     async def _get_film_from_elastic(self, film_id: str) -> Optional[Film]:
         try:
-            data = await self.elastic.get(index='movies', id=film_id)
+            data = await self.elastic.get(index="movies", id=film_id)
         except NotFoundError:
             return None
         return self._handle_single_movie(data["_source"])
-
-    async def _film_from_cache(self, film_id: str) -> Optional[Film]:
-        data = await self.redis.get(film_id)
-        if not data:
-            return None
-
-        film = Film.model_validate_json(data)
-        return film
 
     def _handle_single_movie(self, movie: Dict[str, Any]) -> Film:
         return Film(uuid=movie["id"],
@@ -108,6 +100,14 @@ class FilmService:
                     actors=movie["actors_names"],
                     writers=movie["writers_names"],
                     genre=movie["genre"])
+
+    async def _film_from_cache(self, film_id: str) -> Optional[Film]:
+        data = await self.redis.get(film_id)
+        if not data:
+            return None
+
+        film = Film.model_validate_json(data)
+        return film
 
     async def _put_film_to_cache(self, film: Film):
         # Redis set func doc: https://redis.io/commands/set/
@@ -121,4 +121,3 @@ def get_film_service(
         elastic: AsyncElasticsearch = Depends(get_elastic),
 ) -> FilmService:
     return FilmService(redis, elastic)
-
