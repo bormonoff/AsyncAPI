@@ -11,13 +11,13 @@ logging_config.dictConfig(LOGGING)
 class Settings(BaseSettings):
     # API
     ELASTIC_DSN: str
-    ELASTIC_INDEX: str
+    ELASTIC_INDEXES: str
     PROJECT_NAME: str
     ELASTIC_HOST: str
     ELASTIC_PORT: int
     REDIS_HOST: str
     REDIS_PORT: int
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    BASE_DIR: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     # ETL
     POSTGRES_DSN: str
