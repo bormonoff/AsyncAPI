@@ -13,8 +13,8 @@ class Genre(UUIDMixin):
 
 
 class Person(UUIDMixin):
-    fullname: str
-    films: list[dict[str, str]]
+    name: str
+
 
 class FilmWork(UUIDMixin):
     title: str
@@ -33,3 +33,7 @@ class FilmWork(UUIDMixin):
     directors_names: list[str]
     actors_names: list[str]
     writers_names: list[str]
+
+
+class ExtendedPerson(Person):
+    films: list[dict]
