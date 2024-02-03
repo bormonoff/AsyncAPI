@@ -1,18 +1,18 @@
 import os
 
-from pydantic_settings import BaseSettings
-from logging import config as logging_config
+import pydantic_settings
+import logging
 
-from core.logger import LOGGING
+from core import logger
 
-logging_config.dictConfig(LOGGING)
+logging.config.dictConfig(logger.LOGGING)
 
 
-class Settings(BaseSettings):
+class Settings(pydantic_settings.BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
-    ELASTICSEARCH_DSN: str
-    ELASTICSEARCH_INDEX: str
+    ELASTIC_DSN: str
+    ELASTIC_INDEX: str
     PROJECT_NAME: str
     ELASTIC_HOST: str
     ELASTIC_PORT: int

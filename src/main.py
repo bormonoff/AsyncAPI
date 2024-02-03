@@ -1,29 +1,29 @@
 import logging
 
 import uvicorn
-from elasticsearch import AsyncElasticsearch
-from fastapi import FastAPI
-from fastapi.responses import ORJSONResponse
-from redis.asyncio import Redis
+import elasticsearch
+import fastapi
+from fastapi import responses
+from redis import asyncio
 
 from api.v1 import films
 from core import config
-from core.logger import LOGGING
+from core import logger
 from db import elastic, redis
 
 
-app = FastAPI(
+app = fastapi.FastAPI(
     title=config.settings.PROJECT_NAME,
     docs_url="/docs/openapi",
     openapi_url="/docs/openapi.json",
-    default_response_class=ORJSONResponse,
+    default_response_class=responses.ORJSONResponse,
 )
 
 
 @app.on_event("startup")
 async def startup():
-    redis.redis = Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
-    elastic.es = AsyncElasticsearch(config.settings.ELASTIC_DSN)
+    redis.redis = asyncio.Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
+    elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
 
 @app.on_event("shutdown")
 async def shutdown():
@@ -39,6 +39,6 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=8000,
-        log_config=LOGGING,
+        log_config=logger.LOGGING,
         log_level=logging.DEBUG,
     )
