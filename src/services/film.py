@@ -1,24 +1,24 @@
-from functools import lru_cache
+import functools
 from typing import Any, Dict, List, Optional
 
-from elasticsearch import AsyncElasticsearch, NotFoundError
-from fastapi import Depends
-from redis.asyncio import Redis
+import elasticsearch
+import fastapi
+from redis import asyncio
 
-from db.elastic import get_elastic
-from db.redis import get_redis
-from models.film import Film
+from db import elastic
+from db import redis
+from models import film as filmmodel
 
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
 
 class FilmService:
-    def __init__(self, redis: Redis, elastic: AsyncElasticsearch):
+    def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
         self.redis = redis
         self.elastic = elastic
 
 
-    async def get_by_id(self, film_id: str) -> Optional[Film]:
+    async def get_by_id(self, film_id: str) -> Optional[filmmodel.Film]:
         """Optionally return a film from ES."""
         # TODO create redis cache
         # film = await self._film_from_cache(film_id)
@@ -84,15 +84,15 @@ class FilmService:
         result["imdb_rating"] = movie["imdb_rating"]
         return result
 
-    async def _get_film_from_elastic(self, film_id: str) -> Optional[Film]:
+    async def _get_film_from_elastic(self, film_id: str) -> Optional[filmmodel.Film]:
         try:
             data = await self.elastic.get(index="movies", id=film_id)
-        except NotFoundError:
+        except elasticsearch.NotFoundError:
             return None
         return self._handle_single_movie(data["_source"])
 
-    def _handle_single_movie(self, movie: Dict[str, Any]) -> Film:
-        return Film(uuid=movie["id"],
+    def _handle_single_movie(self, movie: Dict[str, Any]) -> filmmodel.Film:
+        return filmmodel.Film(uuid=movie["id"],
                     title=movie["title"],
                     imdb_rating=movie["imdb_rating"],
                     description=movie["description"],
@@ -101,23 +101,23 @@ class FilmService:
                     writers=movie["writers_names"],
                     genre=movie["genre"])
 
-    async def _film_from_cache(self, film_id: str) -> Optional[Film]:
+    async def _film_from_cache(self, film_id: str) -> Optional[filmmodel.Film]:
         data = await self.redis.get(film_id)
         if not data:
             return None
 
-        film = Film.model_validate_json(data)
+        film = filmmodel.Film.model_validate_json(data)
         return film
 
-    async def _put_film_to_cache(self, film: Film):
-        # Redis set func doc: https://redis.io/commands/set/
+    async def _put_film_to_cache(self, film: filmmodel.Film):
+        # asyncio.Redis set func doc: https://redis.io/commands/set/
         await self.redis.set(film.id, film.model_dump_json(), FILM_CACHE_EXPIRE_IN_SECONDS)
 
 
 # Use lru_cache decorator to gain service object as a singleton
-@lru_cache()
+@functools.lru_cache()
 def get_film_service(
-    redis: Redis = Depends(get_redis),
-    elastic: AsyncElasticsearch = Depends(get_elastic),
+    redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
+    elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
 ) -> FilmService:
     return FilmService(redis, elastic)

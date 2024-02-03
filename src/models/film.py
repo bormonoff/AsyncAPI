@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+import pydantic
 
 
-class FilmBase(BaseModel):
+class FilmBase(pydantic.BaseModel):
     uuid: str
     title: str
     imdb_rating: float | None
