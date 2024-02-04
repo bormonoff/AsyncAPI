@@ -11,7 +11,7 @@ from services import person as personservice
 router = fastapi.APIRouter()
 
 
-@router.get('/search/', response_model=List[personmodel.Person])
+@router.get("/search/", response_model=List[personmodel.Person])
 async def search_films(
     pattern: str,
     page_size: int = 10,
@@ -25,7 +25,7 @@ async def search_films(
         page_number=page_number)
     return films
 
-@router.get('/{person_id}', response_model=personmodel.Person)
+@router.get("/{person_id}", response_model=personmodel.Person)
 async def search_films(
     person_id: str,
     person_service: personservice.PersonService = fastapi.Depends(personservice.get_person_service)
@@ -38,7 +38,7 @@ async def search_films(
     films = await person_service.get_person_with_id(person_id)
     return films
 
-@router.get('/{person_id}/film', response_model=List[filmmodel.FilmBase])
+@router.get("/{person_id}/film", response_model=List[filmmodel.FilmBase])
 async def search_films(
     person_id: str,
     page_size: int = 10,

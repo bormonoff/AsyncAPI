@@ -10,22 +10,22 @@ from services import film as filmservice
 router = fastapi.APIRouter()
 
 
-@router.get('/{film_id}', response_model=filmmodel.Film, response_model_by_alias=False)
+@router.get("/{film_id}", response_model=filmmodel.Film, response_model_by_alias=False)
 async def film_details(
     film_id: str,
     film_service: filmservice.FilmService = fastapi.Depends(filmservice.get_film_service)
 ) -> filmmodel.Film:
-    """Find and return the film wia it's id."""
+    """Find and return the film wia it"s id."""
     try:
         uuid.UUID(film_id)
     except:
         raise fastapi.exceptions.RequestValidationError("Invalid uuid")
     film = await film_service.get_by_id(film_id)
     if not film:
-        raise fastapi.HTTPException(status_code=http.HTTPStatus.NOT_FOUND, detail='film not found')
+        raise fastapi.HTTPException(status_code=http.HTTPStatus.NOT_FOUND, detail="film not found")
     return film
 
-@router.get('/', response_model=List[filmmodel.FilmBase], response_model_by_alias=False)
+@router.get("/", response_model=List[filmmodel.FilmBase], response_model_by_alias=False)
 async def get_popular_films(
     sort: str = "imdb_rating",
     genre: Optional[str] = None,
@@ -41,7 +41,7 @@ async def get_popular_films(
         page_number=page_number)
     return films
 
-@router.get('/search/', response_model=List[filmmodel.FilmBase], response_model_by_alias=False)
+@router.get("/search/", response_model=List[filmmodel.FilmBase], response_model_by_alias=False)
 async def search_films(
     pattern: str,
     page_size: int = 10,

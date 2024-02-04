@@ -8,7 +8,7 @@ from services import genre as genresevice
 router = fastapi.APIRouter()
 
 
-@router.get('/', response_model=List[genremodel.Genre], response_model_by_alias=False)
+@router.get("/", response_model=List[genremodel.Genre], response_model_by_alias=False)
 async def search_genres(
     page_size: int = 10,
     page_number: int = 1,
@@ -20,7 +20,7 @@ async def search_genres(
         page_number=page_number)
     return films
 
-@router.get('/{genre_id}', response_model=genremodel.Genre, response_model_by_alias=False)
+@router.get("/{genre_id}", response_model=genremodel.Genre, response_model_by_alias=False)
 async def search_films_using_genre(
     genre_name: str,
     page_size: int = 10,
