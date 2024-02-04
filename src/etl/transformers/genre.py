@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from etl.models import Genre
+from etl import models
 
 
 class GenreTransformer:
@@ -10,5 +10,5 @@ class GenreTransformer:
     def transform(data: Iterable):
         results = []
         for item in data:
-            results.append(Genre(**item))
+            results.append(models.Genre(**item))
         return results

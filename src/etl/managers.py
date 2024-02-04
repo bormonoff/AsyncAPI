@@ -1,8 +1,7 @@
+"""ETL managers"""
 from typing import Type
 
 from psycopg2.extensions import connection as pg_connection
-from utils.logger import logger
-from utils.state import State
 
 from etl.extractors.base import BaseExtractor
 from etl.loaders.film_work import FilmWorkLoader
@@ -11,19 +10,21 @@ from etl.loaders.person import PersonLoader
 from etl.transformers.film_work import FilmWorkTransformer
 from etl.transformers.genre import GenreTransformer
 from etl.transformers.person import PersonTransformer
+from etl.utils import logger as etl_logger
+from etl.utils.state import State
 
-TABLES = ('film_work', 'genre', 'person')
+TABLES = ("film_work", "genre", "person")
 
 HANDLERS = {
-    'film_work_transformer': FilmWorkTransformer,
-    'genre_transformer': GenreTransformer,
-    'person_transformer': PersonTransformer,
-    'film_work_loader': FilmWorkLoader,
-    'genre_loader': GenreLoader,
-    'person_loader': PersonLoader,
-    'film_work_idx': 'movies',
-    'genre_idx': 'genres',
-    'person_idx': 'persons',
+    "film_work_transformer": FilmWorkTransformer,
+    "genre_transformer": GenreTransformer,
+    "person_transformer": PersonTransformer,
+    "film_work_loader": FilmWorkLoader,
+    "genre_loader": GenreLoader,
+    "person_loader": PersonLoader,
+    "film_work_idx": "movies",
+    "genre_idx": "genres",
+    "person_idx": "persons",
 }
 
 
@@ -45,7 +46,7 @@ class FilmWorkETLManager:
         self.state = state
 
     def run(self):
-        logger.info("Start ETL for %s", self.extractor_class.TABLE_NAME)
+        etl_logger.logger.info("Start ETL for %s", self.extractor_class.TABLE_NAME)
         state_key = f"{self.extractor_class.TABLE_NAME}_updated_at"
         updated_at = self.state.get(state_key)
 
@@ -55,16 +56,16 @@ class FilmWorkETLManager:
         if data:
             for table in TABLES:
                 if data.get(table):
-                    transformer = HANDLERS[f'{table}_transformer']()
+                    transformer = HANDLERS[f"{table}_transformer"]()
                     data[table] = transformer.transform(data[table])
-                    loader = HANDLERS[f'{table}_loader'](HANDLERS[f'{table}_idx'], self.load_chunk_size)
+                    loader = HANDLERS[f"{table}_loader"](HANDLERS[f"{table}_idx"], self.load_chunk_size)
                     loader.load(data[table])
-                    if table == 'film_work':
+                    if table == "film_work":
                         self.state.set(state_key, last_updated_at)
-                logger.info(
+                etl_logger.logger.info(
                     "ETL for %s successfully finished.\nTotal: %d",
                     table,
                     len(data.get(table, [])),
                 )
         else:
-            logger.info("No changes in data for ETL")
+            etl_logger.logger.info("No changes in data for ETL")

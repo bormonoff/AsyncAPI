@@ -1,14 +1,14 @@
 import psycopg2
 from psycopg2.extensions import connection as pg_connection
 
-from etl.utils.backoff import backoff
+from etl.utils import backoff as etl_backoff
 
 
 class BaseExtractor:
-    """Базовый экстрактор"""
+    """Base extractor"""
 
     TABLE_NAME: str
-    MAIN_TABLE: bool  # основная таблица или связанная с основной
+    MAIN_TABLE: bool  # main table or associated table with the main table
 
     def __init__(
         self,
@@ -21,9 +21,9 @@ class BaseExtractor:
         self.chunk_size = chunk_size
         self.schema = schema
         self.updated_at = updated_at
-        self.tables = ['film_work', 'genre', 'person']
+        self.tables = ["film_work", "genre", "person"]
 
-    @backoff(psycopg2.DatabaseError)
+    @etl_backoff.backoff(psycopg2.DatabaseError)
     def fetch_all(self, query):
         cursor = self._connection.cursor()
         cursor.execute(query)
@@ -69,7 +69,7 @@ class BaseExtractor:
                     WHERE i.id IN {ids}
                     ORDER BY i.updated_at;
                 """.format(schema=self.schema, table=self.TABLE_NAME, ids=ids)
-                extracted_data['film_work'] = self.fetch_all(query)
+                extracted_data["film_work"] = self.fetch_all(query)
                 extracted_data[self.TABLE_NAME] = ids
         return extracted_data
 
@@ -158,11 +158,11 @@ class BaseExtractor:
     def extract(self) -> tuple[dict, str]:
         extracted_data = self._produce()
 
-        if data := extracted_data.get('film_work'):
+        if data := extracted_data.get("film_work"):
             self.updated_at = str(data[-1]["updated_at"])
-            extracted_data['film_work'] = self._enrich_film_work(tuple([i["id"] for i in data]))
-        if data := extracted_data.get('genre'):
-            extracted_data['genre'] = self._enrich_genre(tuple(data))
-        if data := extracted_data.get('person'):
-            extracted_data['person'] = self._enrich_person(tuple(data))
+            extracted_data["film_work"] = self._enrich_film_work(tuple([i["id"] for i in data]))
+        if data := extracted_data.get("genre"):
+            extracted_data["genre"] = self._enrich_genre(tuple(data))
+        if data := extracted_data.get("person"):
+            extracted_data["person"] = self._enrich_person(tuple(data))
         return extracted_data, self.updated_at

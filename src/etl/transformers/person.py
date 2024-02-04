@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from etl.models import ExtendedPerson
+from etl import models
 
 
 class PersonTransformer:
@@ -10,5 +10,5 @@ class PersonTransformer:
     def transform(data: Iterable):
         results = []
         for item in data:
-            results.append(ExtendedPerson(**item))
+            results.append(models.ExtendedPerson(**item))
         return results

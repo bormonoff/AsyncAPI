@@ -1,10 +1,11 @@
+"""Model for ETL objets"""
+import datetime
 import uuid
-from datetime import datetime
 
-from pydantic import BaseModel
+import pydantic
 
 
-class UUIDMixin(BaseModel):
+class UUIDMixin(pydantic.BaseModel):
     id: uuid.UUID
 
 
@@ -17,12 +18,13 @@ class Person(UUIDMixin):
 
 
 class FilmWork(UUIDMixin):
+    """Model for film work"""
     title: str
     description: str | None
     rating: float | None
     type: str | None
-    created_at: datetime
-    updated_at: datetime
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
 
     genres: list[Genre]
     directors: list[Person]

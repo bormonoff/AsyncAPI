@@ -1,8 +1,8 @@
+import time
 from functools import wraps
-from time import sleep
-from typing import Any, Type
+from typing import Type
 
-from utils.logger import logger
+from etl.utils import logger as etl_logger
 
 
 def backoff(
@@ -25,14 +25,14 @@ def backoff(
                 try:
                     return func(*args, **kwargs)
                 except exceptions as e:
-                    logger.error(
+                    etl_logger.logger.error(
                         "Function %s was failed. Try number: %d. Sleep time: %d. Exception:\n%s",
                         func.__name__,
                         try_number,
                         sleep_time,
                         str(e),
                     )
-                    sleep(sleep_time)
+                    time.sleep(sleep_time)
                     if sleep_time < border_sleep_time:
                         sleep_time = sleep_time * factor**try_number
                         if sleep_time > border_sleep_time:

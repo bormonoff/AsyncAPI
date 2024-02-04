@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from etl.models import FilmWork
+from etl import models
 
 
 class FilmWorkTransformer:
@@ -13,6 +13,6 @@ class FilmWorkTransformer:
 
             for field in ("genres", "directors", "actors", "writers"):
                 item[f"{field}_names"] = [g["name"] for g in item[field]]
-            results.append(FilmWork(**item))
+            results.append(models.FilmWork(**item))
 
         return results

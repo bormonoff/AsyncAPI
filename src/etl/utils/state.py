@@ -32,13 +32,13 @@ class JsonFileStorage(BaseStorage):
 
     def save_state(self, state: Dict[str, Any]) -> None:
         """Сохранить состояние в хранилище."""
-        with open(self.file_path, "w") as storage_file:
+        with open(self.file_path, "w", encoding="utf-8") as storage_file:
             storage_file.write(json.dumps(state))
 
     def retrieve_state(self) -> Dict[str, Any]:
         """Получить состояние из хранилища."""
         try:
-            with open(self.file_path, "r") as storage_file:
+            with open(self.file_path, "r", encoding="utf-8") as storage_file:
                 str_data = storage_file.read()
                 if not str_data:
                     return {}
