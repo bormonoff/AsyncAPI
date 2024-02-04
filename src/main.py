@@ -24,6 +24,7 @@ async def startup():
     redis.redis = asyncio.Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
     elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
 
+
 @app.on_event("shutdown")
 async def shutdown():
     await redis.redis.close()
