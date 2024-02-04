@@ -1,79 +1,56 @@
-from functools import lru_cache
-from typing import Optional, Dict, List, Any, Tuple
+import functools
+from typing import Any, Dict, List
 
-from elasticsearch import AsyncElasticsearch
-from fastapi import Depends
+import elasticsearch
+import fastapi
+from redis import asyncio
 
-from redis.asyncio import Redis
-from db.elastic import get_elastic
-from db.redis import get_redis
+from db import elastic, redis
+from models import person as personmodel
 
 
 class PersonService:
-    def __init__(self, redis: Redis, elastic: AsyncElasticsearch):
+    def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
         self.redis = redis
         self.elastic = elastic
 
-    async def get_persons_with_pattern(self, pattern: str, page_size: int,
-                                     page_number: int
-    ) -> List[Dict[str, str]]:
+    async def get_persons_with_pattern(self, pattern: str, page_size: int, page_number: int
+    ) -> List[personmodel.Person]:
         """Return a list of the persons with the pattern.
 
         Encapsulates elastic specific format and returnes data as a following list:
         [{uuid: ..., fullname: ..., films: [{uuid}, roles: []], ...]
 
         """
-        pattern = pattern.lower()
         request = {
-            "index": "movies",
+            "index": "persons",
             "size": page_size,
             "from_": page_size * (page_number - 1),
-            "query": {"match": {"actors_names": pattern}},
+            "query": {"match": {"fullname": pattern}},
         }
         data = await self.elastic.search(**request)
-        # buffer = dict
-        result = [self._transform_movie(movie["_source"], pattern) for movie in data.body["hits"]["hits"]]
+        if not data["hits"]["hits"]:
+            raise fastapi.HTTPException(status_code=404, detail="Not found")
+        result = [self._transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
         return result
 
-    def _transform_movie(self, movie: Dict[str, Any], pattern: str) -> Dict[str, Any]:
-        person = self._find_target_person(movie, pattern)
-        result = {
-            "uuid": movie["id"],
-            "fullname": person["fullname"],
-            "films": list()
-        }
-        for role in person["roles"]:
-            retul
+    async def get_person_with_id(self, person_id: str) -> personmodel.Person:
+        person = await self.elastic.get(index="persons", id=person_id)
+        return self._transform_movie(person["_source"])
 
-
-        result["fullname"] = movie["title"]
-        result["imdb_rating"] = movie["imdb_rating"]
-        return result
-
-    def _find_target_person(self, movie: Dict[str, Any], pattern: str) -> Dict[str, List[str]]:
-        """Find a person's fullname and roles in the movie."""
-
-        # Brute search. As an initial data we gain a movie with the different roles.
-        # As a result we find a person and his roles in the movie.
-        # TODO refactor after changing elasticsearch indexes
-        persons = {"actors_names": "actor",
-                   "writers_names": "writer",
-                   "director": "director"}
-        data = {"roles": list()}
-        for list_of_persons in persons.keys():
-            for person in movie[list_of_persons]:
-                if pattern in person.lower():
-                    data["fullname"] = person
-                    data["roles"].append(persons[list_of_persons])
-                    break
-        return data
+    def _transform_movie(self, movie: Dict[str, Any]) -> personmodel.Person:
+        return personmodel.Person(
+            id=movie["id"],
+            name=movie["fullname"],
+            films=[personmodel.PersonFilm(**movie) for movie in movie["films"]]
+        )
 
 
 # Use lru_cache decorator to gain service object as a singleton
-@lru_cache()
+@functools.lru_cache()
 def get_person_service(
-        redis: Redis = Depends(get_redis),
-        elastic: AsyncElasticsearch = Depends(get_elastic),
+        redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
+        elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
 ) -> PersonService:
     return PersonService(redis, elastic)
 

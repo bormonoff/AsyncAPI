@@ -1,28 +1,28 @@
 import logging
+
+import elasticsearch
+import fastapi
 import uvicorn
+from fastapi import responses
+from redis import asyncio
 
-from fastapi import FastAPI
-from fastapi.responses import ORJSONResponse
-from elasticsearch import AsyncElasticsearch
-from redis.asyncio import Redis
-
-from api.v1 import films, persons
+from api.v1 import films, genres, persons
 from core import config
 from core.logger import LOGGING
 from db import elastic, redis
 
-app = FastAPI(
+app = fastapi.FastAPI(
     title=config.settings.PROJECT_NAME,
     docs_url='/docs/openapi',
     openapi_url='/docs/openapi.json',
-    default_response_class=ORJSONResponse,
+    default_response_class=responses.ORJSONResponse,
     )
 
 
 @app.on_event('startup')
 async def startup():
-    redis.redis = Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
-    elastic.es = AsyncElasticsearch(config.settings.ELASTICSEARCH_DSN)
+    redis.redis = asyncio.Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
+    elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
 
 @app.on_event('shutdown')
 async def shutdown():
@@ -31,6 +31,7 @@ async def shutdown():
 
 app.include_router(films.router, prefix='/api/v1/films', tags=['films'])
 app.include_router(persons.router, prefix='/api/v1/persons', tags=['persons'])
+app.include_router(genres.router, prefix='/api/v1/genres', tags=['genres'])
 
 if __name__ == '__main__':
     # Use run function to debug an app. Otherwise,
