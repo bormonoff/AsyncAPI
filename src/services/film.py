@@ -41,7 +41,7 @@ class FilmService:
         page_size: int,
         page_number: int
     ) -> List[filmmodel.FilmBase]:
-        """Return a list of the films sorted by a field_to_sort variable.
+        """Return a list of the films sorted by a sort variable.
 
         Encapsulates elastic specific format and returnes data as a following list:
         [{uuid: ..., title: ..., imdb_rating}, ...]

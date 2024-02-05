@@ -11,6 +11,7 @@ from core import config
 from core.logger import LOGGING
 from db import elastic, redis
 
+
 app = fastapi.FastAPI(
     title=config.settings.PROJECT_NAME,
     docs_url="/docs/openapi",
@@ -25,10 +26,12 @@ async def startup():
     elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
 
 
+
 @app.on_event("shutdown")
 async def shutdown():
     await redis.redis.close()
     await elastic.es.close()
+
 
 app.include_router(films.router, prefix="/api/v1/films", tags=["films"])
 app.include_router(persons.router, prefix="/api/v1/persons", tags=["persons"])
