@@ -20,25 +20,27 @@ class CacheService:
     def __init__(self, redis: asyncio.Redis):
         self.redis = redis
 
-    async def put_list_to_cache(self,
-                                entity_name: str,
-                                field_to_filter: str,
-                                field_to_sort: str,
-                                page_size: int,
-                                page_number: int,
-                                entity_list: list[film_model.FilmBase | genre_model.Genre | person_model.Person]
-                                ):
+    async def put_list_to_cache(
+        self,
+        entity_name: str,
+        field_to_filter: str,
+        field_to_sort: str,
+        page_size: int,
+        page_number: int,
+        entity_list: list[film_model.FilmBase | genre_model.Genre | person_model.Person]
+    ) -> None:
         cache_key = f'{entity_name}s:filter_{field_to_filter}:sort_{field_to_sort}:{page_size}:{page_number}'
         await self.redis.rpush(cache_key, *[entity.model_dump_json(by_alias=True) for entity in entity_list])
         await self.redis.expire(cache_key, CACHE_EXPIRE_IN_SECONDS)
 
-    async def get_list_from_cache(self,
-                                  entity_name: str,
-                                  field_to_filter: str,
-                                  field_to_sort: str,
-                                  page_size: int,
-                                  page_number: int,
-                                  ) -> Optional[list[film_model.Film | genre_model.Genre | person_model.Person]]:
+    async def get_list_from_cache(
+        self,
+        entity_name: str,
+        field_to_filter: str,
+        field_to_sort: str,
+        page_size: int,
+        page_number: int,
+    ) -> Optional[list[film_model.Film | genre_model.Genre | person_model.Person]]:
         cache_key = f'{entity_name}s:filter_{field_to_filter}:sort_{field_to_sort}:{page_size}:{page_number}'
         data = await self.redis.lrange(cache_key, 0, page_size)
         if not data:
@@ -53,10 +55,10 @@ class CacheService:
                              )
 
     async def get_entity_from_cache(
-            self,
-            entity_name: str,
-            entity_id: str,
-            ) -> Optional[film_model.Film | genre_model.Genre | person_model.Person]:
+        self,
+        entity_name: str,
+        entity_id: str,
+    ) -> Optional[film_model.Film | genre_model.Genre | person_model.Person]:
         data = await self.redis.get(f'{entity_name}:{entity_id}')
         if not data:
             return None

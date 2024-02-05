@@ -13,7 +13,6 @@ from services import cache
 
 class PersonService:
     def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
-        self.redis = redis
         self.elastic = elastic
         self.cache_service = cache.CacheService(redis)
 
@@ -43,7 +42,7 @@ class PersonService:
         if not person:
             person = await self.elastic.get(index="persons", id=person_id)
             if not person:
-                return None
+                raise fastapi.HTTPException(status_code=404, detail="Not found")
             person = self._transform_movie(person["_source"])
             await self.cache_service.put_entity_to_cache("person", person)
         return person

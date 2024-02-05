@@ -16,7 +16,6 @@ FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
 class FilmService:
     def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
-        self.redis = redis
         self.elastic = elastic
         self.cache_service = cache.CacheService(redis)
 
@@ -25,8 +24,6 @@ class FilmService:
         film = await self.cache_service.get_entity_from_cache("film", film_id)
         if not film:
             film = await self._get_film_from_elastic(film_id)
-            if not film:
-                return None
             await self.cache_service.put_entity_to_cache("film", film)
         return film
 
