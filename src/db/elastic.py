@@ -1,9 +1,8 @@
 from typing import Optional
 
-from elasticsearch import AsyncElasticsearch
+import elasticsearch
 
-es: Optional[AsyncElasticsearch] = None
+es: Optional[elasticsearch.AsyncElasticsearch] = None
 
-
-async def get_elastic() -> AsyncElasticsearch:
+async def get_elastic() -> elasticsearch.AsyncElasticsearch:
     return es

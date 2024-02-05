@@ -1,15 +1,18 @@
-from pydantic import BaseModel
+import pydantic
+
+from models import genre as genremodel
+from models import person as personmodel
 
 
-class FilmBase(BaseModel):
-    uuid: str
+class FilmBase(pydantic.BaseModel):
+    uuid: str = pydantic.Field(alias="id")
     title: str
     imdb_rating: float | None
 
 
 class Film(FilmBase):
     description: str | None
-    director: str
-    actors: list[str]
-    writers: list[str]
-    genre: list[str]
+    genre: list[genremodel.Genre]
+    actors: list[personmodel.PersonBase]
+    writers: list[personmodel.PersonBase]
+    directors: list[personmodel.PersonBase]
