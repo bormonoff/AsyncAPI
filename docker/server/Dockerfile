@@ -6,7 +6,7 @@ RUN apk update && \
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     LANG=C.UTF-8 \
-    APP_HOME=/src
+    APP_HOME=/src/api
 
 WORKDIR $APP_HOME
 

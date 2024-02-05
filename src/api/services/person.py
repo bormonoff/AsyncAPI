@@ -1,3 +1,4 @@
+
 import functools
 from typing import Any, Dict, List
 
@@ -7,12 +8,13 @@ from redis import asyncio
 
 from db import elastic, redis
 from models import person as personmodel
+from services import cache
 
 
 class PersonService:
     def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
-        self.redis = redis
         self.elastic = elastic
+        self.cache_service = cache.CacheService(redis)
 
     async def get_persons_with_pattern(self, pattern: str, page_size: int, page_number: int
     ) -> List[personmodel.Person]:
@@ -35,8 +37,15 @@ class PersonService:
         return result
 
     async def get_person_with_id(self, person_id: str) -> personmodel.Person:
-        person = await self.elastic.get(index="persons", id=person_id)
-        return self._transform_movie(person["_source"])
+
+        person = await self.cache_service.get_entity_from_cache("person", person_id)
+        if not person:
+            person = await self.elastic.get(index="persons", id=person_id)
+            if not person:
+                raise fastapi.HTTPException(status_code=404, detail="Not found")
+            person = self._transform_movie(person["_source"])
+            await self.cache_service.put_entity_to_cache("person", person)
+        return person
 
     def _transform_movie(self, movie: Dict[str, Any]) -> personmodel.Person:
         return personmodel.Person(

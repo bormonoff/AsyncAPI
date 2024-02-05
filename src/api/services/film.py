@@ -9,19 +9,22 @@ from db import elastic, redis
 from models import film as filmmodel
 from models import genre as genremodel
 from models import person as personmodel
+from services import cache
 
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
 
 class FilmService:
     def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
-        self.redis = redis
         self.elastic = elastic
-
+        self.cache_service = cache.CacheService(redis)
 
     async def get_by_id(self, film_id: str) -> Optional[filmmodel.Film]:
         """Optionally return a film from ES."""
-        film = await self._get_film_from_elastic(film_id)
+        film = await self.cache_service.get_entity_from_cache("film", film_id)
+        if not film:
+            film = await self._get_film_from_elastic(film_id)
+            await self.cache_service.put_entity_to_cache("film", film)
         return film
 
     async def _get_film_from_elastic(self, film_id: str) -> Optional[filmmodel.Film]:
@@ -38,18 +41,26 @@ class FilmService:
         page_size: int,
         page_number: int
     ) -> List[filmmodel.FilmBase]:
-        """Return a list of the films sorted by a field_to_sort variable.
+        """Return a list of the films sorted by a sort variable.
 
         Encapsulates elastic specific format and returnes data as a following list:
         [{uuid: ..., title: ..., imdb_rating}, ...]
 
         """
-        request = self._create_request(
-            page_size=page_size, page_number=page_number,
-            field_to_sort=field_to_sort, genre=genre
-        )
-        result = await self._get_filmbase_list(request)
-        return result
+        field_to_filter = "all" if not genre else genre
+        films = await self.cache_service.get_list_from_cache("base_film", field_to_filter, field_to_sort,
+                                                             page_size, page_number)
+        if not films:
+            request = self._create_request(
+                page_size=page_size, page_number=page_number,
+                field_to_sort=field_to_sort, genre=genre
+            )
+            films = await self._get_filmbase_list(request)
+            if not films:
+                return None
+            await self.cache_service.put_list_to_cache("base_film", field_to_filter, field_to_sort,
+                                                       page_size, page_number, films)
+        return films
 
     async def get_films_with_pattern(
         self,
