@@ -15,7 +15,7 @@ async def film_details(
     film_id: str,
     film_service: filmservice.FilmService = fastapi.Depends(filmservice.get_film_service)
 ) -> filmmodel.Film:
-    """Find and return the film wia it"s id."""
+    """Find and return the film via it's id."""
     try:
         uuid.UUID(film_id)
     except:
@@ -33,7 +33,7 @@ async def get_popular_films(
     page_number: int = 1,
     film_service: filmservice.FilmService = fastapi.Depends(filmservice.get_film_service)
 ) -> List[filmmodel.FilmBase]:
-    """Get the list of the films sorted by a field_to_sort variable and return the data to a client."""
+    """Get the list of the films sorted by a sort variable and return the data to a client."""
     films = await film_service.get_films_sorted_by_field(
         field_to_sort=sort,
         genre=genre,

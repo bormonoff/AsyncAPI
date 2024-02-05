@@ -22,14 +22,14 @@ async def search_genres(
 
 @router.get("/{genre_id}", response_model=genremodel.Genre, response_model_by_alias=False)
 async def search_films_using_genre(
-    genre_name: str,
+    genre_id: str,
     page_size: int = 10,
     page_number: int = 1,
     genre_service: genresevice.GenreService = fastapi.Depends(genresevice.get_genre_service)
 ) -> genremodel.Genre:
     """Get genre info using genre uuid and return the data to a client."""
     genres = await genre_service.get_genres(
-        genre_name=genre_name,
+        genre_id=genre_id,
         page_size=page_size,
         page_number=page_number)
     return genres
