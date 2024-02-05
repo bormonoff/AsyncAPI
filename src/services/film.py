@@ -17,7 +17,6 @@ class FilmService:
         self.redis = redis
         self.elastic = elastic
 
-
     async def get_by_id(self, film_id: str) -> Optional[Film]:
         """Optionally return a film from ES."""
         # TODO create redis cache
@@ -30,9 +29,8 @@ class FilmService:
 
         return film
 
-    async def get_films_sorted_by_field(self, field_to_sort: str,
-                                        genre: Optional[str], page_size: int,
-                                        page_number: int
+    async def get_films_sorted_by_field(
+        self, field_to_sort: str, genre: Optional[str], page_size: int, page_number: int
     ) -> List[Dict[str, str]]:
         """Return a list of the films sorted by a field_to_sort variable.
 
@@ -40,15 +38,14 @@ class FilmService:
         [{uuid: ..., title: ..., imdb_rating}, ...]
 
         """
-        request = self._create_request(page_size=page_size, page_number=page_number,
-                                 field_to_sort=field_to_sort, genre=genre)
+        request = self._create_request(
+            page_size=page_size, page_number=page_number, field_to_sort=field_to_sort, genre=genre
+        )
         data = await self.elastic.search(**request)
         result = [self._handle_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
         return result
 
-    async def get_films_with_pattern(self, pattern: str, page_size: int,
-                                     page_number: int
-    ) -> List[Dict[str, str]]:
+    async def get_films_with_pattern(self, pattern: str, page_size: int, page_number: int) -> List[Dict[str, str]]:
         """Return a list of the films with the pattern.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -69,7 +66,7 @@ class FilmService:
         }
 
         if kwargs.get("field_to_sort"):
-            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}},
+            request["sort"] = ({kwargs["field_to_sort"]: {"order": "desc"}},)
         if kwargs.get("genre"):
             request["query"] = {"match": {"genre": kwargs["genre"]}}
         if kwargs.get("pattern"):
@@ -92,14 +89,16 @@ class FilmService:
         return self._handle_single_movie(data["_source"])
 
     def _handle_single_movie(self, movie: Dict[str, Any]) -> Film:
-        return Film(uuid=movie["id"],
-                    title=movie["title"],
-                    imdb_rating=movie["imdb_rating"],
-                    description=movie["description"],
-                    director=movie["director"],
-                    actors=movie["actors_names"],
-                    writers=movie["writers_names"],
-                    genre=movie["genre"])
+        return Film(
+            uuid=movie["id"],
+            title=movie["title"],
+            imdb_rating=movie["imdb_rating"],
+            description=movie["description"],
+            director=movie["director"],
+            actors=movie["actors_names"],
+            writers=movie["writers_names"],
+            genre=movie["genre"],
+        )
 
     async def _film_from_cache(self, film_id: str) -> Optional[Film]:
         data = await self.redis.get(film_id)

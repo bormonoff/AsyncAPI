@@ -38,3 +38,4 @@ db_backup
 poetry.lock
 .venv
 flake-report
+state.json
