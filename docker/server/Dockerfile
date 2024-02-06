@@ -22,7 +22,7 @@ COPY --chown=$USER:$USER ./pyproject.toml pyproject.toml
 RUN poetry export -f requirements.txt --output requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir
 
-COPY --chown=$USER:$USER ./src $APP_HOME
+COPY --chown=$USER:$USER ./src/api $APP_HOME
 
 USER $USER
 

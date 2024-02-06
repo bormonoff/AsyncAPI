@@ -1,5 +1,5 @@
 import functools
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 import elasticsearch
 import fastapi
@@ -40,7 +40,7 @@ class FilmService:
         genre: Optional[str],
         page_size: int,
         page_number: int
-    ) -> List[filmmodel.FilmBase]:
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films sorted by a sort variable.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -67,7 +67,7 @@ class FilmService:
         pattern: str,
         page_size: int,
         page_number: int
-    ) -> List[filmmodel.FilmBase]:
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the pattern.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -83,7 +83,7 @@ class FilmService:
         person_id: str,
         page_size: int,
         page_number: int
-    ) -> List[filmmodel.FilmBase]:
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the person using person_id.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -94,7 +94,7 @@ class FilmService:
         result = await self._get_filmbase_list(request)
         return result
 
-    async def _get_filmbase_list(self, request) -> List[filmmodel.FilmBase]:
+    async def _get_filmbase_list(self, request) -> list[filmmodel.FilmBase]:
         try:
             data = await self.elastic.search(**request)
         except elasticsearch.BadRequestError as ex:
@@ -104,7 +104,7 @@ class FilmService:
             raise fastapi.HTTPException(status_code=404, detail="Not found")
         return result
 
-    def _create_request(self, **kwargs) -> Dict[str, str]:
+    def _create_request(self, **kwargs) -> dict[str, str]:
         request = {
             "index": "movies",
             "size": kwargs["page_size"],
@@ -131,14 +131,14 @@ class FilmService:
         }}
         return request
 
-    def _handle_movie(self, movie: Dict[str, Any]) -> filmmodel.FilmBase:
+    def _handle_movie(self, movie: dict[str, Any]) -> filmmodel.FilmBase:
         return filmmodel.FilmBase(
             id=movie["id"],
             title=movie["title"],
             imdb_rating=movie["imdb_rating"]
         )
 
-    def _handle_single_movie(self, movie: Dict[str, Any]) -> filmmodel.Film:
+    def _handle_single_movie(self, movie: dict[str, Any]) -> filmmodel.Film:
         return filmmodel.Film(
             id=movie["id"],
             title=movie["title"],

@@ -1,15 +1,25 @@
+import contextlib
 import logging
 
 import elasticsearch
 import fastapi
 import uvicorn
+from core import config
+from core.logger import LOGGING
+from db import elastic, redis
 from fastapi import responses
 from redis import asyncio
 
 from api.v1 import films, genres, persons
-from core import config
-from core.logger import LOGGING
-from db import elastic, redis
+
+
+@contextlib.asynccontextmanager
+async def lifespan(app: fastapi.FastAPI):
+    redis.redis = asyncio.Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
+    elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
+    yield
+    await redis.redis.close()
+    await elastic.es.close()
 
 
 app = fastapi.FastAPI(
@@ -17,20 +27,7 @@ app = fastapi.FastAPI(
     docs_url="/docs/openapi",
     openapi_url="/docs/openapi.json",
     default_response_class=responses.ORJSONResponse,
-    )
-
-
-@app.on_event("startup")
-async def startup():
-    redis.redis = asyncio.Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
-    elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
-
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    await redis.redis.close()
-    await elastic.es.close()
+    lifespan=lifespan)
 
 
 app.include_router(films.router, prefix="/api/v1/films", tags=["films"])

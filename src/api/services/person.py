@@ -1,6 +1,6 @@
 
 import functools
-from typing import Any, Dict, List
+from typing import Any
 
 import elasticsearch
 import fastapi
@@ -17,7 +17,7 @@ class PersonService:
         self.cache_service = cache.CacheService(redis)
 
     async def get_persons_with_pattern(self, pattern: str, page_size: int, page_number: int
-    ) -> List[personmodel.Person]:
+    ) -> list[personmodel.Person]:
         """Return a list of the persons with the pattern.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -47,7 +47,7 @@ class PersonService:
             await self.cache_service.put_entity_to_cache("person", person)
         return person
 
-    def _transform_movie(self, movie: Dict[str, Any]) -> personmodel.Person:
+    def _transform_movie(self, movie: dict[str, Any]) -> personmodel.Person:
         return personmodel.Person(
             id=movie["id"],
             name=movie["fullname"],
