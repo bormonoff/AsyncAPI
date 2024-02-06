@@ -3,12 +3,11 @@ from typing import Any, Optional
 
 import elasticsearch
 import fastapi
-from redis import asyncio
-
 from db import elastic, redis
 from models import film as filmmodel
 from models import genre as genremodel
 from models import person as personmodel
+from redis import asyncio
 from services import cache
 
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
@@ -35,11 +34,11 @@ class FilmService:
         return self._handle_single_movie(data["_source"])
 
     async def get_films_sorted_by_field(
-        self,
-        field_to_sort: str,
-        genre: Optional[str],
-        page_size: int,
-        page_number: int
+            self,
+            field_to_sort: str,
+            genre: Optional[str],
+            page_size: int,
+            page_number: int
     ) -> list[filmmodel.FilmBase]:
         """Return a list of the films sorted by a sort variable.
 
@@ -63,10 +62,10 @@ class FilmService:
         return films
 
     async def get_films_with_pattern(
-        self,
-        pattern: str,
-        page_size: int,
-        page_number: int
+            self,
+            pattern: str,
+            page_size: int,
+            page_number: int
     ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the pattern.
 
@@ -79,10 +78,10 @@ class FilmService:
         return result
 
     async def get_films_with_person(
-        self,
-        person_id: str,
-        page_size: int,
-        page_number: int
+            self,
+            person_id: str,
+            page_size: int,
+            page_number: int
     ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the person using person_id.
 
@@ -113,22 +112,22 @@ class FilmService:
         }
 
         if kwargs.get("field_to_sort"):
-            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}},
+            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}}
         if kwargs.get("genre"):
             request["query"] = {"match": {"genre": kwargs["genre"]}}
         if kwargs.get("pattern"):
             request["query"] = {"match": {"title": kwargs["pattern"]}}
         if kwargs.get("person_id"):
-            request["query"]: {"nested": {
-            "path": "directors",
-            "query": {
-                "match": {
-                    "directors.id": kwargs["person_id"],
-                    "actors.id": kwargs["person_id"],
-                    "writers.id": kwargs["person_id"],
+            request["query"] = {"nested": {
+                "path": "directors",
+                "query": {
+                    "match": {
+                        "directors.id": kwargs["person_id"],
+                        "actors.id": kwargs["person_id"],
+                        "writers.id": kwargs["person_id"],
+                    }
                 }
-            }
-        }}
+            }}
         return request
 
     def _handle_movie(self, movie: dict[str, Any]) -> filmmodel.FilmBase:
@@ -154,7 +153,7 @@ class FilmService:
 # Use lru_cache decorator to gain service object as a singleton
 @functools.lru_cache()
 def get_film_service(
-    redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
-    elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
+        redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
+        elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
 ) -> FilmService:
     return FilmService(redis, elastic)

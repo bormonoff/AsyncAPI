@@ -3,10 +3,9 @@ from typing import Union
 
 import elasticsearch
 import fastapi
-from redis import asyncio
-
 from db import elastic, redis
 from models import genre as genremodel
+from redis import asyncio
 
 
 class GenreService:

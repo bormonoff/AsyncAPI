@@ -1,13 +1,11 @@
-
 import functools
 from typing import Any
 
 import elasticsearch
 import fastapi
-from redis import asyncio
-
 from db import elastic, redis
 from models import person as personmodel
+from redis import asyncio
 from services import cache
 
 

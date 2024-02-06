@@ -1,5 +1,4 @@
 import pydantic
-
 from models import genre as genremodel
 from models import person as personmodel
 

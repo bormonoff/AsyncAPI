@@ -3,6 +3,7 @@ import logging
 
 import elasticsearch
 import fastapi
+import metadata
 import uvicorn
 from core import config
 from core.logger import LOGGING
@@ -24,7 +25,9 @@ async def lifespan(app: fastapi.FastAPI):
 
 app = fastapi.FastAPI(
     title=config.settings.PROJECT_NAME,
+    description=metadata.description,
     docs_url="/docs/openapi",
+    openapi_tags=metadata.tags_metadata,
     openapi_url="/docs/openapi.json",
     default_response_class=responses.ORJSONResponse,
     lifespan=lifespan)

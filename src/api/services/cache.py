@@ -1,10 +1,9 @@
 from typing import Optional
 
-from redis import asyncio
-
 from models import film as film_model
 from models import genre as genre_model
 from models import person as person_model
+from redis import asyncio
 
 CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
