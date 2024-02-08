@@ -19,11 +19,11 @@ RUN addgroup -g $GID -S $USER  \
 RUN pip install --upgrade pip poetry
 
 COPY --chown=$USER:$USER ./pyproject.toml pyproject.toml
-RUN poetry export -f requirements.txt --output requirements.txt
+RUN poetry export -f requirements.txt --output requirements.txt --without dev --with prod
 RUN pip install -r requirements.txt --no-cache-dir
 
 COPY --chown=$USER:$USER ./src/api $APP_HOME
 
 USER $USER
 
-ENTRYPOINT ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["gunicorn", "main:app", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
