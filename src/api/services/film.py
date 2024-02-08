@@ -34,11 +34,11 @@ class FilmService:
         return self._handle_single_movie(data["_source"])
 
     async def get_films_sorted_by_field(
-            self,
-            field_to_sort: str,
-            genre: Optional[str],
-            page_size: int,
-            page_number: int
+        self,
+        field_to_sort: str,
+        genre: Optional[str],
+        page_size: int,
+        page_number: int
     ) -> list[filmmodel.FilmBase]:
         """Return a list of the films sorted by a sort variable.
 
@@ -62,10 +62,10 @@ class FilmService:
         return films
 
     async def get_films_with_pattern(
-            self,
-            pattern: str,
-            page_size: int,
-            page_number: int
+        self,
+        pattern: str,
+        page_size: int,
+        page_number: int
     ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the pattern.
 
@@ -78,10 +78,10 @@ class FilmService:
         return result
 
     async def get_films_with_person(
-            self,
-            person_id: str,
-            page_size: int,
-            page_number: int
+        self,
+        person_id: str,
+        page_size: int,
+        page_number: int
     ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the person using person_id.
 

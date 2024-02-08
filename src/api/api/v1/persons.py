@@ -35,20 +35,20 @@ async def person_details(
     return person
 
 
-# @router.get("/{person_id}/film", response_model=list[filmmodel.FilmBase])
-# async def search_films(
-#     person_id: uuid.UUID,
-#     page_size: Annotated[int, fastapi.Query(description='Pagination page size', ge=1)] = 10,
-#     page_number: Annotated[int, fastapi.Query(description='Page number', ge=1)] = 1,
-#     film_service: personservice.PersonService = fastapi.Depends(filmservice.get_film_service)
-# ) -> list[filmmodel.FilmBase]:
-#     """Get all films with a person and return the data to a client."""
-#
-#     films = await film_service.get_films_with_person(
-#         person_id=person_id,
-#         page_size=page_size,
-#         page_number=page_number)
-#     return films
+@router.get("/{person_id}/film", response_model=list[filmmodel.FilmBase])
+async def search_films(
+    person_id: uuid.UUID,
+    page_size: Annotated[int, fastapi.Query(description='Pagination page size', ge=1)] = 10,
+    page_number: Annotated[int, fastapi.Query(description='Page number', ge=1)] = 1,
+    film_service: personservice.PersonService = fastapi.Depends(filmservice.get_film_service)
+) -> list[filmmodel.FilmBase]:
+    """Get all films with a person and return the data to a client."""
+
+    films = await film_service.get_films_with_person(
+        person_id=person_id,
+        page_size=page_size,
+        page_number=page_number)
+    return films
 
 
 @router.get("/{person_id}/film", response_model=list[filmmodel.FilmBase])
