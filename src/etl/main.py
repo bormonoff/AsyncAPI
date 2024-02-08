@@ -3,6 +3,7 @@ import json
 import time
 
 from core import config
+
 from etl.extractors.film_work import FilmWorkExtractor
 from etl.extractors.genre import GenreExtractor
 from etl.extractors.person import PersonExtractor

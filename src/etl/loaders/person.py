@@ -1,7 +1,7 @@
 import elastic_transport
+from core import config
 from elasticsearch.helpers import bulk
 
-from core import config
 from etl import models
 from etl.utils import backoff as etl_backoff
 from etl.utils.connectors import elastic_connect

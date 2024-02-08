@@ -1,14 +1,13 @@
 import functools
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 import elasticsearch
 import fastapi
-from redis import asyncio
-
 from db import elastic, redis
 from models import film as filmmodel
 from models import genre as genremodel
 from models import person as personmodel
+from redis import asyncio
 from services import cache
 
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
@@ -40,7 +39,7 @@ class FilmService:
         genre: Optional[str],
         page_size: int,
         page_number: int
-    ) -> List[filmmodel.FilmBase]:
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films sorted by a sort variable.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -67,7 +66,7 @@ class FilmService:
         pattern: str,
         page_size: int,
         page_number: int
-    ) -> List[filmmodel.FilmBase]:
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the pattern.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -83,7 +82,7 @@ class FilmService:
         person_id: str,
         page_size: int,
         page_number: int
-    ) -> List[filmmodel.FilmBase]:
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the person using person_id.
 
         Encapsulates elastic specific format and returnes data as a following list:
@@ -94,7 +93,7 @@ class FilmService:
         result = await self._get_filmbase_list(request)
         return result
 
-    async def _get_filmbase_list(self, request) -> List[filmmodel.FilmBase]:
+    async def _get_filmbase_list(self, request) -> list[filmmodel.FilmBase]:
         try:
             data = await self.elastic.search(**request)
         except elasticsearch.BadRequestError as ex:
@@ -104,7 +103,7 @@ class FilmService:
             raise fastapi.HTTPException(status_code=404, detail="Not found")
         return result
 
-    def _create_request(self, **kwargs) -> Dict[str, str]:
+    def _create_request(self, **kwargs) -> dict[str, str]:
         request = {
             "index": "movies",
             "size": kwargs["page_size"],
@@ -113,32 +112,32 @@ class FilmService:
         }
 
         if kwargs.get("field_to_sort"):
-            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}},
+            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}}
         if kwargs.get("genre"):
             request["query"] = {"match": {"genre": kwargs["genre"]}}
         if kwargs.get("pattern"):
             request["query"] = {"match": {"title": kwargs["pattern"]}}
         if kwargs.get("person_id"):
-            request["query"]: {"nested": {
-            "path": "directors",
-            "query": {
-                "match": {
-                    "directors.id": kwargs["person_id"],
-                    "actors.id": kwargs["person_id"],
-                    "writers.id": kwargs["person_id"],
+            request["query"] = {"nested": {
+                "path": "directors",
+                "query": {
+                    "match": {
+                        "directors.id": kwargs["person_id"],
+                        "actors.id": kwargs["person_id"],
+                        "writers.id": kwargs["person_id"],
+                    }
                 }
-            }
-        }}
+            }}
         return request
 
-    def _handle_movie(self, movie: Dict[str, Any]) -> filmmodel.FilmBase:
+    def _handle_movie(self, movie: dict[str, Any]) -> filmmodel.FilmBase:
         return filmmodel.FilmBase(
             id=movie["id"],
             title=movie["title"],
             imdb_rating=movie["imdb_rating"]
         )
 
-    def _handle_single_movie(self, movie: Dict[str, Any]) -> filmmodel.Film:
+    def _handle_single_movie(self, movie: dict[str, Any]) -> filmmodel.Film:
         return filmmodel.Film(
             id=movie["id"],
             title=movie["title"],
@@ -154,7 +153,7 @@ class FilmService:
 # Use lru_cache decorator to gain service object as a singleton
 @functools.lru_cache()
 def get_film_service(
-    redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
-    elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
+        redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
+        elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
 ) -> FilmService:
     return FilmService(redis, elastic)

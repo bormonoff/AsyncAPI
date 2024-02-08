@@ -1,8 +1,7 @@
-from typing import Optional
-
 from redis import asyncio
 
-redis: Optional[asyncio.Redis] = None
+redis: asyncio.Redis | None = None
+
 
 async def get_redis() -> asyncio.Redis:
     return redis

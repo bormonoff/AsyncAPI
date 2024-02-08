@@ -1,12 +1,11 @@
 import functools
-from typing import List, Union
+from typing import Union
 
 import elasticsearch
 import fastapi
-from redis import asyncio
-
 from db import elastic, redis
 from models import genre as genremodel
+from redis import asyncio
 
 
 class GenreService:
@@ -15,7 +14,7 @@ class GenreService:
         self.elastic = elastic
 
     async def get_genres(self, page_size: int, page_number: int, genre_name: str = ""
-    ) -> Union[genremodel.Genre, List[genremodel.Genre]]:
+    ) -> Union[genremodel.Genre, list[genremodel.Genre]]:
         """Return genres. Optionaly genre using a name.
 
         Encapsulates elastic specific format and returnes data as a following list:
