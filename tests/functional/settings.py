@@ -1,5 +1,6 @@
 import pydantic_settings
 
+
 class Settings(pydantic_settings.BaseSettings):
     app_url: str
     elastic_host: str

@@ -19,7 +19,7 @@ services:
       - "${TESTS_PORT}:${TESTS_PORT}"
     entrypoint: >
       python3 utils/es_waiter.py
-      && python3 
+      && pytest
     depends_on:
       - redis
       - elasticsearch

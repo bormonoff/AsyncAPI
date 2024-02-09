@@ -1,6 +1,7 @@
 import time
-import settings
+
 import elasticsearch
+import settings
 
 if __name__ == "__main__":
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)

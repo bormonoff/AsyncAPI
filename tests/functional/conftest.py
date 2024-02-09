@@ -1,20 +1,22 @@
-import pytest_asyncio
-import elasticsearch
-from elasticsearch import helpers
 import asyncio
-import settings
-import os
 import json
+import os
 import uuid
 
-@pytest_asyncio.fixture(scope='session')
+import elasticsearch
+import pytest_asyncio
+import settings
+from elasticsearch import helpers
+
+
+@pytest_asyncio.fixture(scope="session")
 def event_loop():
     loop = asyncio.new_event_loop()
     yield loop
     loop.close()
 
 
-@pytest_asyncio.fixture(name='es_create_idxs')
+@pytest_asyncio.fixture(scope="session")
 def create_es_indices():
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
     indexes = settings.settings.elastic_indexes.split(",")
@@ -26,7 +28,7 @@ def create_es_indices():
             client.indices.create(index=idx, body=idx_body)
     client.close()
 
-@pytest_asyncio.fixture(name='fill_movies')
+@pytest_asyncio.fixture(scope="session")
 def fill_movies():
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
     data = list()
@@ -83,7 +85,6 @@ def fill_movies():
         data.append(film_doc)
     helpers.bulk(client, data)
 
-@pytest_asyncio.fixture(name='es_create_idxs')
+@pytest_asyncio.fixture(scope="session")
 def init_es_db(create_es_indices, fill_movies):
-    print("a")
     pass
