@@ -1,7 +1,6 @@
 import psycopg2
 from psycopg2.extensions import connection as pg_connection
-
-from etl.utils import backoff as etl_backoff
+from utils.backoff import backoff
 
 
 class BaseExtractor:
@@ -23,7 +22,7 @@ class BaseExtractor:
         self.updated_at = updated_at
         self.tables = ["film_work", "genre", "person"]
 
-    @etl_backoff.backoff(psycopg2.DatabaseError)
+    @backoff(psycopg2.DatabaseError)
     def fetch_all(self, query):
         cursor = self._connection.cursor()
         cursor.execute(query)
@@ -58,7 +57,9 @@ class BaseExtractor:
                         FROM {schema}.{table} as i
                         LEFT JOIN {schema}.{table}_film_work as ifw ON i.id = ifw.{table}_id
                         WHERE ifw.film_work_id IN {ids};         
-                    """.format(schema=self.schema, table=table, ids=ids)
+                    """.format(
+                        schema=self.schema, table=table, ids=ids
+                    )
                     extracted_data[table] = tuple([i["id"] for i in self.fetch_all(query)])
             else:
                 query = """
@@ -68,7 +69,9 @@ class BaseExtractor:
                     LEFT JOIN {schema}.{table} i ON i.id = ifw.{table}_id
                     WHERE i.id IN {ids}
                     ORDER BY i.updated_at;
-                """.format(schema=self.schema, table=self.TABLE_NAME, ids=ids)
+                """.format(
+                    schema=self.schema, table=self.TABLE_NAME, ids=ids
+                )
                 extracted_data["film_work"] = self.fetch_all(query)
                 extracted_data[self.TABLE_NAME] = ids
         return extracted_data
@@ -138,7 +141,9 @@ class BaseExtractor:
             SELECT DISTINCT id, name
             FROM {schema}.genre
             WHERE genre.id IN {ids};
-        """.format(schema=self.schema, ids=ids)
+        """.format(
+            schema=self.schema, ids=ids
+        )
         return self.fetch_all(query)
 
     def _enrich_person(self, ids: tuple) -> list:
@@ -151,7 +156,9 @@ class BaseExtractor:
                 WHERE p.id in {ids}
                 GROUP BY p.id, pfw.film_work_id) as temp_persons
                 GROUP BY id, full_name;
-            """.format(schema=self.schema, ids=ids)
+            """.format(
+            schema=self.schema, ids=ids
+        )
 
         return self.fetch_all(query)
 

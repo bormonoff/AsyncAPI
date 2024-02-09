@@ -1,10 +1,9 @@
 import elastic_transport
-from core import config
+import models
+from core.config import settings
 from elasticsearch.helpers import bulk
-
-from etl import models
-from etl.utils import backoff as etl_backoff
-from etl.utils.connectors import elastic_connect
+from utils.backoff import backoff
+from utils.connectors import elastic_connect
 
 
 class GenreLoader:
@@ -32,7 +31,7 @@ class GenreLoader:
         for chunk in (data[i : i + self.chunk_size] for i in range(0, len(data), self.chunk_size)):
             self._bulk_chunk(chunk)
 
-    @etl_backoff.backoff((elastic_transport.ConnectionError, elastic_transport.SerializationError))
+    @backoff((elastic_transport.ConnectionError, elastic_transport.SerializationError))
     def _bulk_chunk(self, chunk: list):
-        with elastic_connect(config.settings.ELASTIC_DSN) as elk_conn:
+        with elastic_connect(settings.ELASTIC_DSN) as elk_conn:
             bulk(elk_conn, actions=chunk)

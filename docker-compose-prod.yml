@@ -3,7 +3,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: docker/prod/Dockerfile
+      dockerfile: docker/api/prod/Dockerfile
     env_file:
       - .env
     expose:

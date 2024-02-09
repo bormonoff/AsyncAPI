@@ -2,7 +2,7 @@ import time
 from functools import wraps
 from typing import Type
 
-from etl.utils import logger as etl_logger
+from core.logger import logger
 
 
 def backoff(
@@ -25,7 +25,7 @@ def backoff(
                 try:
                     return func(*args, **kwargs)
                 except exceptions as e:
-                    etl_logger.logger.error(
+                    logger.error(
                         "Function %s was failed. Try number: %d. Sleep time: %d. Exception:\n%s",
                         func.__name__,
                         try_number,
