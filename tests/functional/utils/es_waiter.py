@@ -8,4 +8,4 @@ if __name__ == "__main__":
     while True:
         if client.ping():
             break
-        time.sleep(5)
+        time.sleep(1)

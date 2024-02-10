@@ -1,7 +1,6 @@
-import asyncio
 import json
 import os
-import uuid
+import time
 
 import elasticsearch
 import pytest_asyncio
@@ -9,82 +8,32 @@ import settings
 from elasticsearch import helpers
 
 
-@pytest_asyncio.fixture(scope="session")
-def event_loop():
-    loop = asyncio.new_event_loop()
-    yield loop
-    loop.close()
-
-
-@pytest_asyncio.fixture(scope="session")
+@pytest_asyncio.fixture(scope="session", autouse=True)
 def create_es_indices():
+    "Creates elasticindices using jsons stored in the testdata folder."
+    print("conftest")
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
     indexes = settings.settings.elastic_indexes.split(",")
     for idx in indexes:
-        with open(f"{os.path.dirname(__file__)}/testdata/{idx}.json", "r") as f:
+        with open(f"{os.path.dirname(__file__)}/testdata/indices/{idx}.json", "r") as f:
             idx_body = json.load(f)
             if client.indices.exists(index=idx):
                 client.indices.delete(index=idx)
             client.indices.create(index=idx, body=idx_body)
+            print(idx)
     client.close()
 
-@pytest_asyncio.fixture(scope="session")
-def fill_movies():
+@pytest_asyncio.fixture(scope="session", autouse=True)
+def fill_elastic(create_es_indices):
+    print("conftest")
+    "Fills movie index using the data from the testdata/filler/movies_data.json."
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
-    data = list()
-    for i in range(50):
-        film_body = {
-            "id": str(uuid.uuid4()),
-            "imdb_rating": 8.9,
-            "title": "The star",
-            "description": "A film about a star",
-            "type": "movie",
-            "genres_names": ["action", "drama"],
-            "directors_names": ["Angela Turner"],
-            "actors_names": ["Gilby Clarke", "Barbara Church"],
-            "writers_names": ["Bernard Baur"],
-            "genres": [
-                {
-                    "id": str(uuid.uuid4()),
-                    "name": "action"
-                },
-                {
-                    "id": str(uuid.uuid4()),
-                    "name": "drama"
-                }
-            ],
-            "directors": [
-                {
-                    "id": str(uuid.uuid4()),
-                    "name": "Angela Turner"
-                }
-            ],
-            "actors": [
-                {
-                    "id": str(uuid.uuid4()),
-                    "name": "Gilby Clarke"
-                },
-                {
-                    "id": str(uuid.uuid4()),
-                    "name": "Barbara Church"
-                }
-            ],
-            "writers": [
-                {
-                    "id": str(uuid.uuid4()),
-                    "name": "Bernard Baur"
-                },
-            ]
-        }
-
-        film_doc = {
-            "_index": "movies",
-            "_id": film_body["id"],
-            "_source": film_body
-        }
-        data.append(film_doc)
+    a = f"{os.getcwd()}/testdata/filler/movies_data.json"
+    with open(f"{os.getcwd()}/testdata/filler/movies_data.json", "r") as file:
+        data = json.load(file)
     helpers.bulk(client, data)
 
-@pytest_asyncio.fixture(scope="session")
-def init_es_db(create_es_indices, fill_movies):
-    pass
+    # Sleep is needed to let an API reconnect to the elasticsearch indices.
+    # Otherwise API will return 404 for the first tests
+    time.sleep(1)
+

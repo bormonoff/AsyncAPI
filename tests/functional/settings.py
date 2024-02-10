@@ -7,5 +7,7 @@ class Settings(pydantic_settings.BaseSettings):
     elastic_port: str
     elastic_dsn: str
     elastic_indexes: str
+    redis_host: str
+    redis_port: str
 
 settings = Settings()
