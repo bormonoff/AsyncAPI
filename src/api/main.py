@@ -30,7 +30,8 @@ app = fastapi.FastAPI(
     openapi_tags=metadata.tags_metadata,
     openapi_url="/docs/openapi.json",
     default_response_class=responses.ORJSONResponse,
-    lifespan=lifespan)
+    lifespan=lifespan,
+)
 
 
 app.include_router(films.router, prefix="/api/v1/films", tags=["films"])

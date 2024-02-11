@@ -13,7 +13,8 @@ class GenreService:
         self.redis = redis
         self.elastic = elastic
 
-    async def get_genres(self, page_size: int, page_number: int, genre_name: str = ""
+    async def get_genres(
+        self, page_size: int, page_number: int, genre_name: str = ""
     ) -> Union[genremodel.Genre, list[genremodel.Genre]]:
         """Return genres. Optionaly genre using a name.
 
@@ -21,10 +22,8 @@ class GenreService:
         [{uuid: ..., name: ...}, ...]
 
         """
-        data = await self.elastic.search(**self._create_request(
-            page_size=page_size,
-            page_number=page_number,
-            genre_name=genre_name)
+        data = await self.elastic.search(
+            **self._create_request(page_size=page_size, page_number=page_number, genre_name=genre_name)
         )
         if not data["hits"]["hits"]:
             raise fastapi.HTTPException(status_code=404, detail="Not found")
@@ -51,4 +50,3 @@ def get_genre_service(
     elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
 ) -> GenreService:
     return GenreService(redis, elastic)
-

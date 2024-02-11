@@ -6,6 +6,8 @@ services:
       dockerfile: docker/api/dev/Dockerfile
     env_file:
       - .env
+    volumes:
+      - ./src/api:/src/api
     expose:
       - "8000"
     depends_on:
@@ -29,7 +31,7 @@ services:
       - async_api_network
 
   db:
-    image: postgres:16-alpine
+    image: postgres:14-alpine
     hostname: postgres
     restart: always
     volumes:
@@ -66,6 +68,8 @@ services:
       - elasticsearch_data:/usr/share/elasticsearch/data
     expose:
       - "${ELASTIC_PORT}"
+    ports:
+      - "${ELASTIC_PORT}:${ELASTIC_PORT}"
     networks:
       - async_api_network
 

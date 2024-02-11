@@ -26,9 +26,9 @@ class CacheService:
         field_to_sort: str,
         page_size: int,
         page_number: int,
-        entity_list: list[film_model.FilmBase | genre_model.Genre | person_model.Person]
+        entity_list: list[film_model.FilmBase | genre_model.Genre | person_model.Person],
     ) -> None:
-        cache_key = f'{entity_name}s:filter_{field_to_filter}:sort_{field_to_sort}:{page_size}:{page_number}'
+        cache_key = f"{entity_name}s:filter_{field_to_filter}:sort_{field_to_sort}:{page_size}:{page_number}"
         await self.redis.rpush(cache_key, *[entity.model_dump_json(by_alias=True) for entity in entity_list])
         await self.redis.expire(cache_key, CACHE_EXPIRE_IN_SECONDS)
 
@@ -40,7 +40,7 @@ class CacheService:
         page_size: int,
         page_number: int,
     ) -> Optional[list[film_model.Film | genre_model.Genre | person_model.Person]]:
-        cache_key = f'{entity_name}s:filter_{field_to_filter}:sort_{field_to_sort}:{page_size}:{page_number}'
+        cache_key = f"{entity_name}s:filter_{field_to_filter}:sort_{field_to_sort}:{page_size}:{page_number}"
         data = await self.redis.lrange(cache_key, 0, page_size)
         if not data:
             return None
@@ -48,17 +48,18 @@ class CacheService:
         return result
 
     async def put_entity_to_cache(self, entity_name, entity: film_model.Film | genre_model.Genre | person_model.Person):
-        await self.redis.set(f'{entity_name}:{entity.uuid}',
-                             entity.model_dump_json(by_alias=True),
-                             CACHE_EXPIRE_IN_SECONDS,
-                             )
+        await self.redis.set(
+            f"{entity_name}:{entity.uuid}",
+            entity.model_dump_json(by_alias=True),
+            CACHE_EXPIRE_IN_SECONDS,
+        )
 
     async def get_entity_from_cache(
         self,
         entity_name: str,
         entity_id: str,
     ) -> Optional[film_model.Film | genre_model.Genre | person_model.Person]:
-        data = await self.redis.get(f'{entity_name}:{entity_id}')
+        data = await self.redis.get(f"{entity_name}:{entity_id}")
         if not data:
             return None
         entity = ENTITIES[entity_name].model_validate_json(data)
