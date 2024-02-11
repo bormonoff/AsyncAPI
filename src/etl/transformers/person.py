@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from etl import models
+import models
 
 
 class PersonTransformer:

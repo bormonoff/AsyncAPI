@@ -1,17 +1,16 @@
 """ETL managers"""
 from typing import Type
 
+from core.logger import logger
+from extractors.base import BaseExtractor
+from loaders.film_work import FilmWorkLoader
+from loaders.genre import GenreLoader
+from loaders.person import PersonLoader
 from psycopg2.extensions import connection as pg_connection
-
-from etl.extractors.base import BaseExtractor
-from etl.loaders.film_work import FilmWorkLoader
-from etl.loaders.genre import GenreLoader
-from etl.loaders.person import PersonLoader
-from etl.transformers.film_work import FilmWorkTransformer
-from etl.transformers.genre import GenreTransformer
-from etl.transformers.person import PersonTransformer
-from etl.utils import logger as etl_logger
-from etl.utils.state import State
+from transformers.film_work import FilmWorkTransformer
+from transformers.genre import GenreTransformer
+from transformers.person import PersonTransformer
+from utils.state import State
 
 TABLES = ("film_work", "genre", "person")
 
@@ -32,12 +31,12 @@ class FilmWorkETLManager:
     """Менеджер, который запускает ETL для одной из таблиц"""
 
     def __init__(
-            self,
-            pg_conn: pg_connection,
-            extractor_class: Type[BaseExtractor],
-            extract_chunk_size: int,
-            load_chunk_size: int,
-            state: State,
+        self,
+        pg_conn: pg_connection,
+        extractor_class: Type[BaseExtractor],
+        extract_chunk_size: int,
+        load_chunk_size: int,
+        state: State,
     ):
         self._pg_conn = pg_conn
         self.extractor_class = extractor_class
@@ -46,7 +45,7 @@ class FilmWorkETLManager:
         self.state = state
 
     def run(self):
-        etl_logger.logger.info("Start ETL for %s", self.extractor_class.TABLE_NAME)
+        logger.info("Start ETL for %s", self.extractor_class.TABLE_NAME)
         state_key = f"{self.extractor_class.TABLE_NAME}_updated_at"
         updated_at = self.state.get(state_key)
 
@@ -62,10 +61,10 @@ class FilmWorkETLManager:
                     loader.load(data[table])
                     if table == "film_work":
                         self.state.set(state_key, last_updated_at)
-                etl_logger.logger.info(
+                logger.info(
                     "ETL for %s successfully finished.\nTotal: %d",
                     table,
                     len(data.get(table, [])),
                 )
         else:
-            etl_logger.logger.info("No changes in data for ETL")
+            logger.info("No changes in data for ETL")

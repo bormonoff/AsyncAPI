@@ -1,4 +1,4 @@
-from etl.extractors.base import BaseExtractor
+from extractors.base import BaseExtractor
 
 
 class FilmWorkExtractor(BaseExtractor):
