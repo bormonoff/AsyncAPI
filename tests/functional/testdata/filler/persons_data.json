@@ -1,0 +1,105 @@
+[
+    {
+        "_index": "persons",
+        "_id": "420155f3-c732-4c63-a668-daedc14fac44",
+        "_source": {
+            "id": "420155f3-c732-4c63-a668-daedc14fac44",
+            "fullname": "Angela Turner",
+            "films": [
+                {
+                    "id": "ba1f77d3-8df0-48dd-a8c1-1266ad9cc1b9",
+                    "roles": [
+                        "director"
+                    ]
+                },
+                {
+                    "id": "349b9bb5-f0f8-47de-b4f1-e89b2e474cb4",
+                    "roles": [
+                        "director"
+                    ]
+                },
+                {
+                    "id": "408f8c04-5559-4405-bd08-9f3c1ce525bf",
+                    "roles": [
+                        "director"
+                    ]
+                },
+                {
+                    "id": "7cbb446d-7442-48ce-97c8-008ece5f1f0a",
+                    "roles": [
+                        "director"
+                    ]
+                },
+                {
+                    "id": "5af4b4a3-ad44-42ab-8817-3a91e04810ef",
+                    "roles": [
+                        "director"
+                    ]
+                },
+                {
+                    "id": "87bd7e0b-bb39-4043-a434-5d4e00e4eb2c",
+                    "roles": [
+                        "director"
+                    ]
+                }
+            ]
+        }
+    },
+        {
+        "_index": "persons",
+        "_id": "230155f3-c732-4c63-a668-daedc14fac44",
+        "_source": {
+            "id": "230155f3-c732-4c63-a668-daedc14fac44",
+            "fullname": "Will Turner",
+            "films": [
+             ]
+        }
+    },
+    {
+        "_index": "persons",
+        "_id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+        "_source": {
+            "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+            "fullname": "Gilby Clarke",
+            "films": [
+                {
+                    "id": "ba1f77d3-8df0-48dd-a8c1-1266ad9cc1b9",
+                    "roles": [
+                        "actor",
+                        "director"
+                    ]
+                },
+                {
+                    "id": "349b9bb5-f0f8-47de-b4f1-e89b2e474cb4",
+                    "roles": [
+                        "actor"
+                    ]
+                },
+                {
+                    "id": "408f8c04-5559-4405-bd08-9f3c1ce525bf",
+                    "roles": [
+                        "actor"
+                    ]
+                },
+                {
+                    "id": "7cbb446d-7442-48ce-97c8-008ece5f1f0a",
+                    "roles": [
+                        "actor"
+                    ]
+                },
+                {
+                    "id": "5af4b4a3-ad44-42ab-8817-3a91e04810ef",
+                    "roles": [
+                        "actor"
+                    ]
+                },
+                {
+                    "id": "87bd7e0b-bb39-4043-a434-5d4e00e4eb2c",
+                    "roles": [
+                        "actor"
+                    ]
+                }
+            ]
+        }
+    }
+]

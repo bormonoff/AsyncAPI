@@ -10,4 +10,9 @@ class Settings(pydantic_settings.BaseSettings):
     redis_host: str
     redis_port: str
 
+    class Config:
+        env_file = ".env"
+        extra = "ignore"
+
+
 settings = Settings()
