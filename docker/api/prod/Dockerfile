@@ -19,7 +19,7 @@ RUN addgroup -g $GID -S $USER  \
 RUN pip install --upgrade pip poetry
 
 COPY --chown=$USER:$USER ./pyproject.toml pyproject.toml
-RUN poetry export -f requirements.txt --output requirements.txt --without dev --with prod
+RUN poetry export -f requirements.txt --output requirements.txt --without dev,etl --with prod,api
 RUN pip install -r requirements.txt --no-cache-dir
 
 COPY --chown=$USER:$USER ./src/api $APP_HOME

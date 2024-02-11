@@ -19,6 +19,7 @@ class Person(UUIDMixin):
 
 class FilmWork(UUIDMixin):
     """Model for film work"""
+
     title: str
     description: str | None
     rating: float | None

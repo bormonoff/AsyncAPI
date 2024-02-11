@@ -3,7 +3,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: docker/server/Dockerfile
+      dockerfile: docker/api/dev/Dockerfile
     env_file:
       - .env
     expose:
@@ -11,6 +11,20 @@ services:
     depends_on:
       - db
       - elasticsearch
+    networks:
+      - async_api_network
+
+  etl:
+    build:
+      context: .
+      dockerfile: docker/etl/Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - elasticsearch
+#    volumes:
+#      - ./etl/state.json:/app/state.json
     networks:
       - async_api_network
 
