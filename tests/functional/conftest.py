@@ -23,17 +23,18 @@ def create_es_indices():
             print(idx)
     client.close()
 
+
 @pytest_asyncio.fixture(scope="module")
 def fill_elastic(create_es_indices):
     print("conftest")
     "Fills movie index using the data from the testdata/filler/movies_data.json."
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
     a = f"{os.getcwd()}/testdata/filler/movies_data.json"
-    with open(f"{os.getcwd()}/testdata/filler/movies_data.json", "r") as file:
-        data = json.load(file)
-    helpers.bulk(client, data)
+    for index in ('movies', 'genres'):
+        with open(f"{os.path.dirname(__file__)}/testdata/filler/{index}_data.json", "r") as file:
+            data = json.load(file)
+        helpers.bulk(client, data)
 
     # Sleep is needed to let an API reconnect to the elasticsearch indices.
     # Otherwise API will return 404 for the first tests
     time.sleep(1)
-
