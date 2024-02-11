@@ -29,8 +29,7 @@ def fill_elastic(create_es_indices):
     print("conftest")
     "Fills movie index using the data from the testdata/filler/movies_data.json."
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
-    a = f"{os.getcwd()}/testdata/filler/movies_data.json"
-    for index in ('movies', 'genres'):
+    for index in ('movies', 'genres', "persons"):
         with open(f"{os.path.dirname(__file__)}/testdata/filler/{index}_data.json", "r") as file:
             data = json.load(file)
         helpers.bulk(client, data)

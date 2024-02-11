@@ -38,8 +38,9 @@ class PersonService:
 
         person = await self.cache_service.get_entity_from_cache("person", person_id)
         if not person:
-            person = await self.elastic.get(index="persons", id=person_id)
-            if not person:
+            try:
+                person = await self.elastic.get(index="persons", id=person_id)
+            except elasticsearch.NotFoundError:
                 raise fastapi.HTTPException(status_code=404, detail="Not found")
             person = self._transform_movie(person["_source"])
             await self.cache_service.put_entity_to_cache("person", person)
