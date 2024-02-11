@@ -1,3 +1,4 @@
+import http
 import uuid
 from typing import Annotated
 
@@ -32,6 +33,8 @@ async def person_details(
 ) -> personmodel.Person:
     """Get the person data using person id and return the data to a client."""
     person = await person_service.get_person_with_id(person_id)
+    if not person:
+        raise fastapi.HTTPException(status_code=http.HTTPStatus.NOT_FOUND, detail="Person not found")
     return person
 
 
@@ -45,8 +48,9 @@ async def person_films(
 ) -> list[filmmodel.FilmBase]:
     """Get all films with a person and return the data to a client."""
     person = await person_service.get_person_with_id(person_id)
-    films = await film_service.get_films_with_person(
-        person_name=person.full_name,
-        page_size=page_size,
-        page_number=page_number)
-    return films
+    films = person.films
+    result = []
+    for film in films:
+        next_film = await film_service.get_by_id(film.uuid)
+        result.append(next_film)
+    return result[(page_number-1)*page_size:page_number*page_size]

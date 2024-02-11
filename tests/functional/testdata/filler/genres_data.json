@@ -1,0 +1,50 @@
+[
+  {
+    "_index": "genres",
+    "_id": "eb7212a7-dd10-4552-bf7b-7a505a8c0b95",
+    "_source": {
+      "id": "eb7212a7-dd10-4552-bf7b-7a505a8c0b95",
+      "name": "History"
+    }
+  },
+    {
+    "_index": "genres",
+    "_id": "3d8d9bf5-0d90-4353-88ba-4ccc5d2c07ff",
+    "_source": {
+      "id": "3d8d9bf5-0d90-4353-88ba-4ccc5d2c07ff",
+      "name": "Action"
+    }
+  },
+    {
+    "_index": "genres",
+    "_id": "ba1f77d3-8df0-48dd-a8c1-1266ad9cc1b9",
+    "_source": {
+      "id": "6a0a479b-cfec-41ac-b520-41b2b007b611",
+      "name": "Animation"
+    }
+  },
+    {
+    "_index": "genres",
+    "_id": "63c24835-34d3-4279-8d81-3c5f4ddb0cdc",
+    "_source": {
+      "id": "63c24835-34d3-4279-8d81-3c5f4ddb0cdc",
+      "name": "Crime"
+    }
+  },
+    {
+    "_index": "genres",
+    "_id": "6c162475-c7ed-4461-9184-001ef3d9f26e",
+    "_source": {
+      "id": "6c162475-c7ed-4461-9184-001ef3d9f26e",
+      "name": "Sci-Fi"
+    }
+  },
+    {
+    "_index": "genres",
+    "_id": "5373d043-3f41-4ea8-9947-4b746c601bbd",
+    "_source": {
+      "id": "5373d043-3f41-4ea8-9947-4b746c601bbd",
+      "name": "Comedy"
+    }
+  }
+]
