@@ -38,3 +38,16 @@ async def test_list(query_data, expected_answer, fill_elastic):
     if status == 200:
         assert body["name"].lower() == expected_answer["name"].lower()
         assert body["uuid"] == expected_answer["id"]
+
+
+@pytest.mark.asyncio
+async def test_no_genre(fill_elastic):
+    """Tests that API returns the correct paginated list of genres."""
+    session = aiohttp.ClientSession()
+    genre = None
+    url = settings.app_url + f"/api/v1/genres/{genre}"
+    async with session.get(url, params=None) as response:
+        body = await response.json()
+        status = response.status
+    await session.close()
+    assert status == 422

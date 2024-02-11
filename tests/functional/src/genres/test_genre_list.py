@@ -17,6 +17,10 @@ from settings import settings
         (
                 {"page_size": 5, "page_number": 3},
                 {"status": 404, "length": 1}
+        ),
+        (
+                {"page_size": 5, "page_number": -1},
+                {"status": 422, "length": 1}
         )
     ]
 )
