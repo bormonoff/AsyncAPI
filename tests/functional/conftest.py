@@ -8,7 +8,7 @@ import settings
 from elasticsearch import helpers
 
 
-@pytest_asyncio.fixture(scope="session", autouse=True)
+@pytest_asyncio.fixture(scope="module")
 def create_es_indices():
     "Creates elasticindices using jsons stored in the testdata folder."
     print("conftest")
@@ -24,7 +24,7 @@ def create_es_indices():
     client.close()
 
 
-@pytest_asyncio.fixture(scope="session", autouse=True)
+@pytest_asyncio.fixture(scope="module")
 def fill_elastic(create_es_indices):
     print("conftest")
     "Fills movie index using the data from the testdata/filler/movies_data.json."
