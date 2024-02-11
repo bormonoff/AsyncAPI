@@ -26,9 +26,7 @@ RUN pip install -r requirements.txt --no-cache-dir
 COPY --chown=$USER:$USER ./src  $APP_HOME/src
 COPY --chown=$USER:$USER ./testdata $APP_HOME/testdata
 COPY --chown=$USER:$USER ./utils $APP_HOME/utils
-COPY --chown=$USER:$USER ./settings.py settings.py
-COPY --chown=$USER:$USER ./conftest.py conftest.py
-COPY --chown=$USER:$USER ./launcher.py launcher.py
+COPY --chown=$USER:$USER ./settings.py ./conftest.py ./launcher.py $APP_HOME/
 
 
 USER $USER

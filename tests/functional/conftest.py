@@ -8,7 +8,7 @@ import settings
 from elasticsearch import helpers
 
 
-@pytest_asyncio.fixture(scope="session", autouse=True)
+@pytest_asyncio.fixture(scope="module")
 def create_es_indices():
     "Creates elasticindices using jsons stored in the testdata folder."
     print("conftest")
@@ -23,7 +23,8 @@ def create_es_indices():
             print(idx)
     client.close()
 
-@pytest_asyncio.fixture(scope="session", autouse=True)
+
+@pytest_asyncio.fixture(scope="module")
 def fill_elastic(create_es_indices):
     print("conftest")
     "Fills movie index using the data from the testdata/filler/movies_data.json."
@@ -36,4 +37,3 @@ def fill_elastic(create_es_indices):
     # Sleep is needed to let an API reconnect to the elasticsearch indices.
     # Otherwise API will return 404 for the first tests
     time.sleep(1)
-
