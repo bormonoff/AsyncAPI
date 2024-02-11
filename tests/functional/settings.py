@@ -1,3 +1,5 @@
+import os
+
 import pydantic_settings
 
 
@@ -9,5 +11,10 @@ class Settings(pydantic_settings.BaseSettings):
     elastic_indexes: str
     redis_host: str
     redis_port: str
+
+    class Config:
+        env_file = ".env"
+        extra = "ignore"
+
 
 settings = Settings()
