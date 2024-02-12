@@ -1,6 +1,10 @@
+import http
+
 import aiohttp
 import pytest
 import settings
+
+pytestmark = pytest.mark.asyncio
 
 
 @pytest.mark.parametrize(
@@ -23,17 +27,17 @@ import settings
         )
     ]
 )
-@pytest.mark.asyncio
 async def test_sort(query_data, rating, expected_count, fill_elastic):
     "Tests that API returns the correctly sorted data."
     session = aiohttp.ClientSession()
     url = settings.settings.app_url + "/api/v1/films/"
+
     async with session.get(url, params=query_data) as response:
         body = await response.json()
         status = response.status
     await session.close()
 
-    assert status == 200
+    assert status == http.HTTPStatus.OK
     for i in range(expected_count):
         assert body[i]["imdb_rating"] == rating[i]
 
@@ -55,18 +59,18 @@ async def test_sort(query_data, rating, expected_count, fill_elastic):
         ),
     ]
 )
-@pytest.mark.asyncio
 async def test_validation(query_data):
     "Tests that request data is invalid."
     session = aiohttp.ClientSession()
     url = settings.settings.app_url + "/api/v1/films/"
+
     async with session.get(url, params=query_data) as response:
         status = response.status
     await session.close()
-    assert status == 422
+
+    assert status == http.HTTPStatus.UNPROCESSABLE_ENTITY
 
 
-@pytest.mark.asyncio
 async def test_unknown_genre():
     "Tests that unknown genre returns 404."
     session = aiohttp.ClientSession()
@@ -77,10 +81,12 @@ async def test_unknown_genre():
         "page_size": "10",
         "page_number": "1"
     }
+
     async with session.get(url, params=query_data) as response:
         status = response.status
     await session.close()
-    assert status == 404
+
+    assert status == http.HTTPStatus.NOT_FOUND
 
 
 @pytest.mark.parametrize(
@@ -100,12 +106,13 @@ async def test_unknown_genre():
         )
     ]
 )
-@pytest.mark.asyncio
 async def test_out_of_range(query_data, body_count):
     "Tests that page count is correct."
     session = aiohttp.ClientSession()
     url = settings.settings.app_url + "/api/v1/films/"
+
     async with session.get(url, params=query_data) as response:
         body = await response.json()
     await session.close()
+
     assert len(body) == body_count
