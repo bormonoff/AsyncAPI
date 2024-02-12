@@ -1,11 +1,16 @@
-import time
+import redis
 
 import settings
-from redis import asyncio
+from utils.backoff import backoff
+
+
+@backoff()
+def redis_connect(host, port):
+    connection = redis.Redis(host=host, port=port)
+    if not connection.ping():
+        raise ConnectionError("Can not connect to Elasticsearch")
+    # return connection
+
 
 if __name__ == '__main__':
-    redis = asyncio.Redis(host=settings.settings.redis_host, port=settings.settings.redis_port)
-    while True:
-        if redis.ping():
-            break
-        time.sleep(1)
+    redis_connect(host=settings.settings.redis_host, port=settings.settings.redis_port)
