@@ -9,7 +9,6 @@ def redis_connect(host, port):
     connection = redis.Redis(host=host, port=port)
     if not connection.ping():
         raise ConnectionError("Can not connect to Elasticsearch")
-    # return connection
 
 
 if __name__ == '__main__':
