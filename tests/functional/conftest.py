@@ -10,8 +10,7 @@ from elasticsearch import helpers
 
 @pytest_asyncio.fixture(scope="module")
 def create_es_indices():
-    "Creates elasticindices using jsons stored in the testdata folder."
-    print("conftest")
+    """Creates elastic indices using jsons stored in the testdata folder."""
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
     indexes = settings.settings.elastic_indexes.split(",")
     for idx in indexes:
@@ -20,14 +19,12 @@ def create_es_indices():
             if client.indices.exists(index=idx):
                 client.indices.delete(index=idx)
             client.indices.create(index=idx, body=idx_body)
-            print(idx)
     client.close()
 
 
 @pytest_asyncio.fixture(scope="module")
 def fill_elastic(create_es_indices):
-    print("conftest")
-    "Fills movie index using the data from the testdata/filler/movies_data.json."
+    """Fills movie index using the data from the testdata/filler/movies_data.json."""
     client = elasticsearch.Elasticsearch(settings.settings.elastic_dsn)
     for index in ('movies', 'genres', "persons"):
         with open(f"{os.path.dirname(__file__)}/testdata/filler/{index}_data.json", "r") as file:
