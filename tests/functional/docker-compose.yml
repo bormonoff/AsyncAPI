@@ -1,0 +1,55 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ../../.
+      dockerfile: docker/dev/Dockerfile
+    env_file:
+      - .env
+    network_mode: "host"
+    # ports:
+    #   - "8000:8000"
+
+  tests:
+    build:
+      context: .
+      dockerfile: docker/pytest/Dockerfile
+    env_file:
+      - .env
+    network_mode: "host"
+    # expose:
+    #   - "8001"
+    depends_on:
+      - elasticsearch
+      - redis
+
+  elasticsearch:
+    image: elasticsearch:8.6.2
+    env_file:
+      - .env
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    network_mode: "host"
+    # ports:
+    #   - "${ELASTIC_PORT}:${ELASTIC_PORT}"
+
+  redis:
+    image: redis:7-alpine
+    network_mode: "host"
+    # ports:
+    #   - "${REDIS_PORT}:${REDIS_PORT}"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 1m20s
+      timeout: 5s
+      retries: 3

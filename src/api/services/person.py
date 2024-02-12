@@ -31,10 +31,12 @@ class PersonService:
     async def get_person_with_id(self, person_id: str) -> personmodel.Person:
         person = await self.cache_service.get_entity_from_cache("person", person_id)
         if not person:
-            person = await self.storage.get_person_by_id(person_id)
-            if person:
-                person = self._transform_movie(person)
-                await self.cache_service.put_entity_to_cache("person", person)
+            try:
+                person = await self.elastic.get(index="persons", id=person_id)
+            except elasticsearch.NotFoundError:
+                raise fastapi.HTTPException(status_code=404, detail="Not found")
+            person = self._transform_movie(person["_source"])
+            await self.cache_service.put_entity_to_cache("person", person)
         return person
 
     def _transform_movie(self, movie: dict[str, Any]) -> personmodel.Person:

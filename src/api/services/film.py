@@ -65,14 +65,19 @@ class FilmService:
         result = await self._get_filmbase_list(request)
         return result
 
-    async def get_films_with_person(self, person_id: str, page_size: int, page_number: int) -> list[filmmodel.FilmBase]:
+    async def get_films_with_person(
+        self,
+        person_name: str,
+        page_size: int,
+        page_number: int
+    ) -> list[filmmodel.FilmBase]:
         """Return a list of the films with the person using person_id.
 
         Encapsulates elastic specific format and returnes data as a following list:
         [{uuid: ..., title: ..., imdb_rating}, ...]
 
         """
-        request = self._create_request(page_size=page_size, page_number=page_number, person_id=person_id)
+        request = self._create_request(page_size=page_size, page_number=page_number, person_name=person_name)
         result = await self._get_filmbase_list(request)
         return result
 
@@ -97,20 +102,17 @@ class FilmService:
         if kwargs.get("field_to_sort"):
             request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}}
         if kwargs.get("genre"):
-            request["query"] = {"match": {"genre": kwargs["genre"]}}
+            request["query"] = {"match": {"genres_names": kwargs["genre"]}}
         if kwargs.get("pattern"):
             request["query"] = {"match": {"title": kwargs["pattern"]}}
-        if kwargs.get("person_id"):
+        if kwargs.get("person_name"):
             request["query"] = {
-                "nested": {
-                    "path": "directors",
-                    "query": {
-                        "match": {
-                            "directors.id": kwargs["person_id"],
-                            "actors.id": kwargs["person_id"],
-                            "writers.id": kwargs["person_id"],
-                        }
-                    },
+                "bool": {
+                    "should": [
+                        {"match": {"directors_names": kwargs["person_name"]}},
+                        {"match": {"actors_names": kwargs["person_name"]}},
+                        {"match": {"writers_names": kwargs["person_name"]}},
+                    ]
                 }
             }
         return request

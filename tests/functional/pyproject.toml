@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "test"
+version = "0.1.0"
+description = "API"
+authors = ["bormonoff <address.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+elasticsearch = "^8.12.0"
+redis = "^5.0.1"
+pydantic = "^2.6.1"
+pydantic-settings = "^2.1.0"
+pytest = "^8.0.0"
+aiohttp = "^3.9.3"
+pytest-asyncio = "^0.23.4"
+
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.12.1"
+flake8 = "^6.1.0"
+wemake-python-styleguide = "^0.18.0"
+isort = "^5.13.2"
+pre-commit = "^3.6.0"
+pyright = "^1.1.347"
+pyproject-flake8 = "^6.1.0"

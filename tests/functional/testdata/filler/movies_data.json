@@ -1,0 +1,2857 @@
+[
+    {
+        "_index": "movies",
+        "_id": "ba1f77d3-8df0-48dd-a8c1-1266ad9cc1b9",
+        "_source": {
+            "id": "ba1f77d3-8df0-48dd-a8c1-1266ad9cc1b9",
+            "imdb_rating": 9.8,
+            "title": "The Rock",
+            "description": "A film about a rock",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner",
+                "Gilby Clarke"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "149cec7f-1d2e-4e2a-b180-a43ffe154063",
+                    "name": "action"
+                },
+                {
+                    "id": "fe495c05-26ad-481c-b96a-cbe51da0e002",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "420155f3-c732-4c63-a668-daedc14fac44",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "03e7fb00-7c0d-4f37-83e3-e4cc17ac42bb",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "4742d708-abdc-44e0-9ed0-a7320cce2462",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "349b9bb5-f0f8-47de-b4f1-e89b2e474cb4",
+        "_source": {
+            "id": "349b9bb5-f0f8-47de-b4f1-e89b2e474cb4",
+            "imdb_rating": 9.9,
+            "title": "The rock",
+            "description": "A film about a Rock",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "62939431-5f64-488f-af66-cf0f46ace557",
+                    "name": "action"
+                },
+                {
+                    "id": "6dcc03e2-d583-422e-a150-56b8868d1398",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "420155f3-c732-4c63-a668-daedc14fac44",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "39fb1c56-ced4-411a-a8d9-7d4b7a0dfff8",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "3f4928a3-28e5-4bff-8505-d1aba6c7df08",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "408f8c04-5559-4405-bd08-9f3c1ce525bf",
+        "_source": {
+            "id": "408f8c04-5559-4405-bd08-9f3c1ce525bf",
+            "imdb_rating": 9.7,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "0eb4e605-d25d-4e69-a617-aa892fda4f67",
+                    "name": "action"
+                },
+                {
+                    "id": "b81e64de-4519-47e2-be35-b5d4163631b1",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "420155f3-c732-4c63-a668-daedc14fac44",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "c398f413-d278-49fc-945a-68cd7013251a",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "d0c03abf-653b-4813-8a35-8200c18aaf63",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "7cbb446d-7442-48ce-97c8-008ece5f1f0a",
+        "_source": {
+            "id": "7cbb446d-7442-48ce-97c8-008ece5f1f0a",
+            "imdb_rating": 9.6,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "c1dedc9b-b0dc-43ba-b946-44416656c867",
+                    "name": "action"
+                },
+                {
+                    "id": "c3a73f1a-6560-4f49-9491-037665ccd799",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "420155f3-c732-4c63-a668-daedc14fac44",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "89320d75-3bc4-403d-885f-6a5d913b02d5",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "0d225c8e-aca9-423d-9331-b8b0ca9fc836",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "5af4b4a3-ad44-42ab-8817-3a91e04810ef",
+        "_source": {
+            "id": "5af4b4a3-ad44-42ab-8817-3a91e04810ef",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "45c81cfb-508f-4151-99f7-456619c31061",
+                    "name": "action"
+                },
+                {
+                    "id": "2887ae5a-b87c-49fc-b639-5cf3e9821f76",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "420155f3-c732-4c63-a668-daedc14fac44",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "c7532f69-d02f-4735-8e79-e8a924b5a7d8",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "d38a20cf-083a-42d1-82cb-6f28e376e8c6",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "87bd7e0b-bb39-4043-a434-5d4e00e4eb2c",
+        "_source": {
+            "id": "87bd7e0b-bb39-4043-a434-5d4e00e4eb2c",
+            "imdb_rating": 5.0,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "54d066db-23ef-4890-b7e9-070c883054a2",
+                    "name": "action"
+                },
+                {
+                    "id": "5a7e73b1-a119-443e-b985-5a673a54fde8",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "420155f3-c732-4c63-a668-daedc14fac44",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b2c79ddc-fc3d-410a-b9c9-7b5792b62630",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "66311190-deda-45ff-a2aa-bd5ab401f0fb",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "94d51311-3b5e-4074-a441-43167ae04c09",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "4f35f88f-9a53-4185-9f20-da3035cf981e",
+        "_source": {
+            "id": "4f35f88f-9a53-4185-9f20-da3035cf981e",
+            "imdb_rating": 4.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "a76fed46-6a97-4f38-8528-cafa9b18dac8",
+                    "name": "action"
+                },
+                {
+                    "id": "18841be1-598f-44ef-aa04-d421725ae9fe",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "b091c32e-ed12-4976-989b-b91aa5d6d53c",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "6195cc52-1f04-456b-b465-dab04416b4ab",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "5c759c68-e1b8-44f8-85f3-9b9040caefff",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "608505e2-3cff-42b6-a230-ec4c3b0986ec",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "56a16b03-898a-4868-a5e8-205891896e17",
+        "_source": {
+            "id": "56a16b03-898a-4868-a5e8-205891896e17",
+            "imdb_rating": 4.8,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "f362bacb-f7a4-4e0d-baec-d8e23b4219a1",
+                    "name": "action"
+                },
+                {
+                    "id": "9c103a1c-04d9-4b5c-9b86-7595e76e4b85",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "9974a344-ad2e-420f-a38d-a6d7a9b38b85",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "2d21a393-cd43-4076-8321-330a4e2d6d00",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "6feb2d22-a1db-419e-a842-16fe0ee6d52a",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "bdcab8e2-8462-4467-8fd8-78f9d71efb95",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "d762dc48-7ec1-462a-b1fd-6afb08076b7e",
+        "_source": {
+            "id": "d762dc48-7ec1-462a-b1fd-6afb08076b7e",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "ae5d1dc4-2aae-4716-a900-55c820a8cfca",
+                    "name": "action"
+                },
+                {
+                    "id": "f906c08f-ab5e-4172-831f-bb24d1d3a80f",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "9a46d8f1-28bb-403a-8cf8-d3a033d57552",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "68f18219-4e04-4218-b29e-b4daa6639057",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "4e0e8c97-7552-4b55-870d-d02d494a86f1",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "6ef714f1-d1d7-44bd-8a89-d5d657dc8511",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "7add5658-42d3-4bdb-aec8-7d97ceb01374",
+        "_source": {
+            "id": "7add5658-42d3-4bdb-aec8-7d97ceb01374",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "6bbd7c64-e1c0-43a3-a249-59a6f7bfdf15",
+                    "name": "action"
+                },
+                {
+                    "id": "95fd4bc6-cd8a-415f-a34b-51f5363a9e98",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "dc67ccb2-2a4a-4750-bc07-f82d03c84e92",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "24437f2e-0e89-411c-97ab-23542711f996",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "a23441f2-7bda-42ac-924f-2e737b8006e1",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "3d93ca8e-64f9-43a9-bc2c-a42b935cf604",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "cc72a0ab-868d-435a-adc8-beee0cac2438",
+        "_source": {
+            "id": "cc72a0ab-868d-435a-adc8-beee0cac2438",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "7ae91a1f-8317-4e38-8376-a92fbd034c5c",
+                    "name": "action"
+                },
+                {
+                    "id": "742c3e7b-8b4b-44b8-97ef-521ea6070e6d",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "b26d6c5e-228f-43f6-bc83-9f0a0f38cf25",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "6a69c209-06be-478f-a46c-b1ee02598ee6",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "8d83b70b-50c2-4578-bcfc-c6146c758009",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "17b96e1f-ccb0-410a-97a4-f607c69c88fd",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "20f13f58-e2eb-44c6-9155-30376d16dc19",
+        "_source": {
+            "id": "20f13f58-e2eb-44c6-9155-30376d16dc19",
+            "imdb_rating": 4.2,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "175d5330-3053-473f-874b-58d76f893864",
+                    "name": "action"
+                },
+                {
+                    "id": "f0340f2f-d2cf-408b-a58b-5e9b2950a07a",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "52cbc228-2052-45d7-999a-d89339a6add9",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "2e0ca18d-e9f4-44a0-bd2b-bc4b0fe1ee72",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "8c7c6f67-5b7c-4f14-b195-f5f81d4cab43",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "37e40ea5-4ea1-4369-84d5-b687d7cff7ef",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "c3bca96b-9422-4544-9a8d-d0f84ac7daea",
+        "_source": {
+            "id": "c3bca96b-9422-4544-9a8d-d0f84ac7daea",
+            "imdb_rating": 4.1,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "8d4ff7bb-35c1-48de-beec-68e4a46a287f",
+                    "name": "action"
+                },
+                {
+                    "id": "88d0cd88-2029-4f4d-8e04-40fd16c44a35",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "d37efcfe-fc8b-414e-ab6c-24b9db7ace88",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "9031bdbd-9182-4d4b-b5a1-cf69784673a8",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "fc1a665d-d262-409d-9001-7ade9e43868a",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "4c07d14e-34a9-4e81-a4cb-c9a8378e8424",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "3cb3ddee-611a-4586-9e3d-3d0a81504933",
+        "_source": {
+            "id": "3cb3ddee-611a-4586-9e3d-3d0a81504933",
+            "imdb_rating": 4.0,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "d77818ee-7157-4332-80c6-b1b03783a262",
+                    "name": "action"
+                },
+                {
+                    "id": "f656d4f2-05b4-4e11-a6a7-37042d58f2d3",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "2269732c-a5f1-41d8-8c56-dc595a14c184",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "27424697-652a-4a25-9b9a-48afb82d2b4f",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "956a4fad-0566-4f88-ad3f-8ea8d63ea225",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "2be1ae83-fadb-40ea-8e66-bb0589e7c897",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "4308a579-096d-4461-8cdd-baccafa0b85b",
+        "_source": {
+            "id": "4308a579-096d-4461-8cdd-baccafa0b85b",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "1f7dd984-a7b1-4d5f-af95-16f51c2df2b8",
+                    "name": "action"
+                },
+                {
+                    "id": "78019dd3-dd40-4106-aca9-5b89b1ef611a",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "2ea98a50-d419-46b9-bf1d-8630cb5423b7",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "802c02a2-65ee-41f8-a145-6f2561749d15",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "f6acb2a1-9491-4346-bd4a-9b7a6a04e0ec",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "05b94f91-33fb-462f-b6ff-4e463d408623",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "6bcdf204-26be-4df8-b29a-8cbe0f942b62",
+        "_source": {
+            "id": "6bcdf204-26be-4df8-b29a-8cbe0f942b62",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "be6306bf-3bea-4c91-98aa-9d4fe4a560de",
+                    "name": "action"
+                },
+                {
+                    "id": "1dc41b57-e24e-40f7-a5fd-0011234b2158",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "6c7a8591-bb57-4d47-bafe-eef33c89cb55",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "6bbfa79c-47a3-45db-9d8a-fd1e89f30518",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "dd9eef96-d3b6-47db-9a70-f7619423f426",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "6426d574-1c8a-4c6e-8d15-17aea0603014",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "91cb0fe4-ba2c-457e-a559-47d69acc4663",
+        "_source": {
+            "id": "91cb0fe4-ba2c-457e-a559-47d69acc4663",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "6c638a62-bf29-43fa-9e38-35832be5e8b4",
+                    "name": "action"
+                },
+                {
+                    "id": "e020c3c5-fa76-46f0-95a8-a68a4a6fe414",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "7e7206a5-7bc3-4606-8700-d5962a32e4dd",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "4f3d73f4-2e11-46b1-a267-25f46adb040b",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "da342078-2ed5-4550-ae05-f490b3f99d96",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "4d6ce078-8510-4865-a66f-b67a8e04637a",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "cf076f06-c5f6-4111-8129-d9b31e5eaceb",
+        "_source": {
+            "id": "cf076f06-c5f6-4111-8129-d9b31e5eaceb",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "f43aa6cc-30a5-4fc8-9dc6-6ea0e62fc8c8",
+                    "name": "action"
+                },
+                {
+                    "id": "411a91b1-be32-4b05-abaf-05c3b36dcd58",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "7988a89f-0b17-4935-833f-b8936b4bd0d6",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "37ee7247-0d86-42d2-b9a5-1f26784171a9",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "3a7f379a-417e-46ee-8fe3-d4ed3d70bd18",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "65199b14-9f41-4c90-a47b-2284f79d9c3e",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "eb1eba9d-d206-49d7-8dec-7341bd57d056",
+        "_source": {
+            "id": "eb1eba9d-d206-49d7-8dec-7341bd57d056",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "215d1b1f-117f-48e5-a636-3a6ddaa68413",
+                    "name": "action"
+                },
+                {
+                    "id": "fc7026f9-d50d-4133-ad6b-45439388dfc6",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "8ce9a77e-a535-4140-a850-502eaed56376",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "82b19450-397d-42d4-9ad3-1fab2d5eedee",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "7db1d824-a0b9-4591-8747-b921983a550f",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "38e62c30-6894-4be8-86ed-254413fc8141",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "a3c7ce55-32be-45d8-9faf-3deb9711982a",
+        "_source": {
+            "id": "a3c7ce55-32be-45d8-9faf-3deb9711982a",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "50f5d977-ddd7-42c0-b1d8-61a84724eb0a",
+                    "name": "action"
+                },
+                {
+                    "id": "2a5e5855-5d4d-4744-9054-4f52d34df558",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "58e71d4d-3e03-4ca2-832d-35b0844787c4",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b00558c9-ae3d-4b06-bcd7-cca4d17ce8a8",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "ef07b323-c43a-430e-b443-1bf2f6ce0e5c",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "2fdbb731-3198-4ffc-b284-f2e1cfc332a5",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "b51cdbc1-69bf-4598-995f-ebf4e0d4cee4",
+        "_source": {
+            "id": "b51cdbc1-69bf-4598-995f-ebf4e0d4cee4",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "a5c0e545-01d2-43cd-8a03-8862333d5cb1",
+                    "name": "action"
+                },
+                {
+                    "id": "6ead85df-c066-4bf0-8441-c6a3cee1213a",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "3eb573ed-2576-4236-a46a-b84076cceef4",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "a331d133-fa4c-41c4-9f3a-570cf685ddf1",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "6ca7b0ff-e439-4646-8824-0c34a0545c2c",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "aa380a1e-66ab-4e22-839c-34088b08ada0",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "6caf103c-6b2f-4dc0-93f3-5b15ce8c19ae",
+        "_source": {
+            "id": "6caf103c-6b2f-4dc0-93f3-5b15ce8c19ae",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "67f0085e-794e-4882-adfd-5c9cd70fa774",
+                    "name": "action"
+                },
+                {
+                    "id": "4a1b97c5-1b58-4c83-91a0-069e57c185ca",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "84d17585-e5f2-44d5-ad98-89c12d30527a",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "dc5e2844-9619-487f-bf3b-98b0ce7cf979",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "ad4d783b-3442-4540-87ec-650e31847d67",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "3fac29d6-c422-4bcb-bde7-b88e67769b58",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "a1cebd90-354b-4db6-aba7-80c23b133b1d",
+        "_source": {
+            "id": "a1cebd90-354b-4db6-aba7-80c23b133b1d",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "5a66cf93-6f78-4372-954d-c53c1efcae9d",
+                    "name": "action"
+                },
+                {
+                    "id": "079a42cf-8cac-477d-a809-6e7b94bb315f",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "c5f81004-2f7c-4724-b5a8-a3b556a5e5ab",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "178d6f0c-d6d3-4bb1-a366-5e1a7973682c",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "4edcd894-b718-4f3f-bc3f-74355add19ef",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "b4386b3e-3f5d-4dc3-a359-539c621098d3",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "632abbbf-1e11-4046-a986-b2e10077378f",
+        "_source": {
+            "id": "632abbbf-1e11-4046-a986-b2e10077378f",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "2a183310-d210-439f-92ce-d8f1869f4547",
+                    "name": "action"
+                },
+                {
+                    "id": "a08cc281-fb24-4df3-a75f-ae5b6e283c79",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "3f60d7d9-c2dd-42b7-82c8-cb65c5cbe123",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b60fca0b-1516-4edb-a268-23b114b60416",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "6d4eed24-d6b5-4ba1-9569-0a12bedfaf0f",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "73c7072e-f960-4313-b86d-bc7ab3053fb2",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "14381e0f-d020-4c9b-a208-a1cd5a4498bb",
+        "_source": {
+            "id": "14381e0f-d020-4c9b-a208-a1cd5a4498bb",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "24dee433-eb29-400d-a25d-f6bdb180a81c",
+                    "name": "action"
+                },
+                {
+                    "id": "ae33a8e2-4396-4f96-aa93-d73df0f63895",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "a9738ae4-ef13-4d57-a497-5411f8445dd7",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "6df6aa81-5249-460d-9e18-5ed0d6fbb82c",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "b11cf0a9-25b3-49fa-b877-56c0a875be81",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "d8ea6a8f-95dd-46b7-ad3c-fec0f726df52",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "127d23ac-dc69-47ed-a4cd-a2a5e513cebf",
+        "_source": {
+            "id": "127d23ac-dc69-47ed-a4cd-a2a5e513cebf",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "3f52a136-c1ca-4f2c-a725-437fb578922d",
+                    "name": "action"
+                },
+                {
+                    "id": "eca49c8c-247b-44f5-850a-3aae814fa9ba",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "f3d1412b-1378-449a-a35c-9edd82162099",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "f63dbfdc-afc6-47b1-b634-7a4b18a2c7cd",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "83e77cd1-fd27-4f93-b627-9021733cfa3f",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "e739115f-88e4-4db0-9600-1e4847a2363f",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "35ed3ae4-cb36-4274-9ba1-2b48beb9ea7e",
+        "_source": {
+            "id": "35ed3ae4-cb36-4274-9ba1-2b48beb9ea7e",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "872c0b00-3e3c-43ab-89b9-87fa28634b1c",
+                    "name": "action"
+                },
+                {
+                    "id": "7e71443b-0036-43e0-89d9-109969f42a7b",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "beb9e42b-7e0f-4940-b69d-30cee430d612",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "a367964a-6fc3-47c1-a046-09c9cdaf4552",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "de3eb082-ceef-4e5e-b6d5-9433c06cb411",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "f53e09bf-6246-4780-b288-aae06ab041ae",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "e57b446a-0a6c-4035-aac1-1e43af7a296f",
+        "_source": {
+            "id": "e57b446a-0a6c-4035-aac1-1e43af7a296f",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "9496ec69-fa65-4494-82d7-6b6e22af98a7",
+                    "name": "action"
+                },
+                {
+                    "id": "ac12690d-2d6a-42fc-ad1e-3ee887711c7b",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "b3b518e7-1ef0-4f59-b018-494114e57e7c",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "6fdfff6e-8680-441e-845c-0a588ad0fb55",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "8d8f7217-7d15-4368-9db2-fcb33bdf8172",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "6464ab53-4beb-4774-9f03-f534e26b83dd",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "3079c4ff-6630-4f8c-a91a-4fe0529db83a",
+        "_source": {
+            "id": "3079c4ff-6630-4f8c-a91a-4fe0529db83a",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "97ae5707-1601-42b5-a7d6-e59746e9b3c1",
+                    "name": "action"
+                },
+                {
+                    "id": "6edc65b1-c113-449f-8c5e-fff2460a0fac",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "9d3e8b4e-2756-4eb6-8885-9ec11a2c8ab4",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "e18fa500-5ebd-4eb1-a6b6-2d876e61a862",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "46430cd4-f500-4c12-9b6c-c7fcbd22bcb5",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "fe43b6fa-7934-4931-b66d-d6596e9db397",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "98ebb3ef-133c-4f2b-ac61-6b5ce4d393b4",
+        "_source": {
+            "id": "98ebb3ef-133c-4f2b-ac61-6b5ce4d393b4",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "eaf66137-08e4-49c1-b1e1-a20ce418b528",
+                    "name": "action"
+                },
+                {
+                    "id": "a265647e-8cf3-428e-a9ef-eda899c332c5",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "39c9e07f-0d91-46f8-8e41-54786971c2bb",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "67ac83af-74cf-4284-9fa7-cb87639c1e9b",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "d363e8cf-37e8-4ade-a924-e01ddbd2772c",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "2a314026-c84a-4e07-bfa5-e384a697c764",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "2ee0ed5a-a6e2-4af6-99ba-937dbc19186f",
+        "_source": {
+            "id": "2ee0ed5a-a6e2-4af6-99ba-937dbc19186f",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "dfccf463-8d54-4651-bb7b-e8b79bcd839e",
+                    "name": "action"
+                },
+                {
+                    "id": "3801f9a3-d33c-432b-ae59-07c81da91bbd",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "f7e74819-93a7-4da5-9f88-d3e955011edc",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "d5808b4c-8d9b-4efd-b8e3-b03fef07c4e6",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "f5c1a8b7-30a2-4303-97b4-cbbfc16ad299",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "8793bd85-03ee-4bb4-9afe-a2736cb3774a",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "6f4245ea-d392-438e-b79a-56c4b58204f6",
+        "_source": {
+            "id": "6f4245ea-d392-438e-b79a-56c4b58204f6",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "b223d801-8093-4d68-9278-f8fad5401d38",
+                    "name": "action"
+                },
+                {
+                    "id": "7ee57293-1fce-4587-8c26-0cbf5e7437cc",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "edf5b1e6-7123-4275-87dc-9e6a9e59d55a",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "e7b07d3a-5dae-473b-9f31-df3e92f14241",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "9b0aac04-3e59-4989-95a5-66dee3b8aceb",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "3c0644ec-f31b-47bf-8254-b222b71c3ddd",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "70b4eb1d-c8d3-4439-a518-0a792fdf8717",
+        "_source": {
+            "id": "70b4eb1d-c8d3-4439-a518-0a792fdf8717",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "200dc404-ed2a-4a01-b472-ef4b04179f06",
+                    "name": "action"
+                },
+                {
+                    "id": "169673fc-65d2-48c0-959a-584f5634f8d4",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "833fcf02-920e-4b81-9864-027f0744303a",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "ed86eb2d-0559-4fed-b220-2843881e8456",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "66c816a2-8ca0-4202-b57f-9aa44b736bfc",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "3f25b8da-0e5e-4aa9-bd19-0f079ddf1b2b",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "09bbb23c-9a53-4cad-b89f-7ffa016a2d98",
+        "_source": {
+            "id": "09bbb23c-9a53-4cad-b89f-7ffa016a2d98",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "e3fb8d3b-41c5-4a58-a40c-1fc5e17bc0d5",
+                    "name": "action"
+                },
+                {
+                    "id": "d8280383-1482-4312-8578-e4d3100708e3",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "253f94c6-d10b-43d4-ba94-6ffdce3bc7da",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "f4e392b2-0197-4329-a96d-457340c2da1d",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "da9a29bd-3745-4e3f-bc5c-26229981b182",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "cc2303b5-0860-4b2e-b075-33f7d86c661e",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "aba64e06-fd2c-4d56-8a04-2f3b6d40ccbb",
+        "_source": {
+            "id": "aba64e06-fd2c-4d56-8a04-2f3b6d40ccbb",
+            "imdb_rating": 1.0,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "horror"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "e0202cb3-c9e6-4670-b6e1-6b9eaa4b9aae",
+                    "name": "action"
+                },
+                {
+                    "id": "8b82ef75-c291-440f-bdaf-7e95837af631",
+                    "name": "horror"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "28a68763-ec32-4127-991a-18e05fa48a02",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "5b8bb487-fab2-4e10-89bc-88de6893d852",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "3e5626bd-099c-4f95-8789-de7b85ea56a8",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "54bef297-800e-4e64-a1c5-2da2364a4a12",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "b5df1534-7901-4f2f-97d1-1c891cf0c73c",
+        "_source": {
+            "id": "b5df1534-7901-4f2f-97d1-1c891cf0c73c",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "df4635c5-e513-4bf3-b6a1-9a11acf748bd",
+                    "name": "action"
+                },
+                {
+                    "id": "15ae7b50-2d8a-4fdc-bfd7-5c7ddade2c77",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "8bfe5f31-613c-4486-a568-b9ea8dc82fa7",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "91c3c972-7984-48d5-a37b-155cea3b75c3",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "7e8e6b69-6d37-4036-bd8c-9621fa7872ed",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "bb0666c6-7b9c-4123-8f5d-efac0f0b747d",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "cb9fc2e0-02cd-4069-b191-ff7bb1afcc98",
+        "_source": {
+            "id": "cb9fc2e0-02cd-4069-b191-ff7bb1afcc98",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "a78af5e8-6b19-47ca-a429-8ac3d5cc1b46",
+                    "name": "action"
+                },
+                {
+                    "id": "fc865bf9-a8db-472b-89d1-24b0da733524",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "719b8977-7f5a-4b43-8630-1f73cba52e23",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "2c55be57-d9be-40ec-99fe-e8566f41a8a9",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "6a3ce79d-df6e-4422-9bc4-eea9d866c7a4",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "94f0b028-ba92-49ab-ae94-39725ca825d1",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "bbc87d7d-4a0e-4838-875f-9ef2552b8651",
+        "_source": {
+            "id": "bbc87d7d-4a0e-4838-875f-9ef2552b8651",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "9da19405-893e-4952-885a-b15decd586eb",
+                    "name": "action"
+                },
+                {
+                    "id": "0a523b64-5502-4b5b-9c26-963ac7a426f5",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "4004d6d1-89b6-4433-a002-dd6217f09ad7",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "8b871a08-4e48-4615-bef0-22442fa73aba",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "e86e51a2-8541-4a8a-ae72-39f52f136926",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "3e2a8fc6-dab8-48ec-9a23-929f6647983a",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "32d23071-b18d-43b0-90bd-745ba743567b",
+        "_source": {
+            "id": "32d23071-b18d-43b0-90bd-745ba743567b",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "4ef5d141-7d15-4542-bf73-da37e5416039",
+                    "name": "action"
+                },
+                {
+                    "id": "0d249514-01c6-470e-af10-9cda35dbe91e",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "809e5d4f-bd6f-43a4-9923-c9b1fd317ebd",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "dadcc7e8-3235-45fc-9b2d-198990bcc5e9",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "64e8316c-c3cc-4652-a91e-bd68803ff82b",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "1ea6eded-6cf5-4ef9-bfa8-3e45915ab96f",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "d3ea7ef2-2aee-40cc-9bd9-cc96499ec102",
+        "_source": {
+            "id": "d3ea7ef2-2aee-40cc-9bd9-cc96499ec102",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "d599d234-acc0-4d92-8676-2b4f697638ff",
+                    "name": "action"
+                },
+                {
+                    "id": "4e262e40-cf26-405e-b0ac-b88384b0b140",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "33a6c7b8-5e43-4765-91f1-768cee5dcce6",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "8a28f0c8-2368-4511-930e-6064d02bc7a0",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "bc62489d-a01b-4fd7-bcdd-0bcd145d9d4f",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "662c6947-a795-4983-8566-415761985319",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "cc70bf63-5c2d-4692-a829-7c36b4fa0553",
+        "_source": {
+            "id": "cc70bf63-5c2d-4692-a829-7c36b4fa0553",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "c09cfd45-6f33-4fc0-925a-38001e35d011",
+                    "name": "action"
+                },
+                {
+                    "id": "3bd211b9-92dc-4099-b8f7-395b4f2b468a",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "efbc8359-66c5-41fa-899f-3dfffc000fad",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "a6164df6-d2ec-4c60-af1b-8231e3aca1ee",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "e9543477-7502-4d48-8426-5ab47870c037",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "f5f23df8-aae9-4cd7-a6be-9c6ec9521c5e",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "bc4b0a65-853f-47eb-8e7e-e34c0ad4f1eb",
+        "_source": {
+            "id": "bc4b0a65-853f-47eb-8e7e-e34c0ad4f1eb",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "febef295-1146-4564-a0ac-09eea5c796bc",
+                    "name": "action"
+                },
+                {
+                    "id": "eb3de38a-d922-4ffe-bb4d-8089a621458f",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "720e0d93-e820-407c-b284-38e8d756c501",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "f67f9881-6c35-4c88-8f6d-2f1747c18823",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "59a44b10-f581-4c95-974a-ee01f0dcc679",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "372c5e01-1ffa-4296-8517-2744dda6f24e",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "0ce55e59-022d-4568-9aa1-1c06c9c26306",
+        "_source": {
+            "id": "0ce55e59-022d-4568-9aa1-1c06c9c26306",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "c542b795-3a93-4717-9c7a-ce4932e3ab32",
+                    "name": "action"
+                },
+                {
+                    "id": "495144a3-2137-4f40-8ffd-9d608cba8549",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "fe7b188c-9de8-4d9a-8624-556632f8f973",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "5b952524-e602-4288-ba98-24fbfae5c32d",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "f7831690-2c87-4bcd-9713-c1186c7636e5",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "0f25da4a-3406-4f07-bf49-eae6c4f41f5f",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "9f4a1156-29f0-4055-8fcc-e17ed05022e7",
+        "_source": {
+            "id": "9f4a1156-29f0-4055-8fcc-e17ed05022e7",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "c1733311-fdad-4e20-bab1-680562fbb4b1",
+                    "name": "action"
+                },
+                {
+                    "id": "8290f4f4-4305-42cc-b4fb-eea397761079",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "20270dea-7937-4e47-851f-94e5e54eeb8f",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "6f16e0e1-9b3e-4816-95f0-b037bca3a98b",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "a87287aa-4d2b-4171-9c30-72fd7e5c248c",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "ca3796a7-23c1-44c8-be15-522b1153f35f",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "f02489f8-87f8-4cbd-9fb2-1a86fa1eff52",
+        "_source": {
+            "id": "f02489f8-87f8-4cbd-9fb2-1a86fa1eff52",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "017291e8-2d28-4017-9ba1-58f21effff12",
+                    "name": "action"
+                },
+                {
+                    "id": "39a84b74-5727-40e7-bc69-f36220c07b76",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "ebcfd32c-5d15-48bb-8ff7-5cb1a799a81c",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "b9a7592b-4a5f-4603-b568-9eed3ece4dca",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "2e0b6020-14a3-4768-a9cd-8f2e27105be0",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "e7f2ec4e-9031-46f2-a766-453a676b578e",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "025ab28f-5d42-4cff-983d-09255d98a004",
+        "_source": {
+            "id": "025ab28f-5d42-4cff-983d-09255d98a004",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "73c1ab91-01e4-4e38-bdb7-04e4afd50f01",
+                    "name": "action"
+                },
+                {
+                    "id": "69a84a98-aa31-4ac4-be52-47fc1603ce5a",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "b921be28-6d9d-42c2-8de3-b256e318b64c",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "ae3bd79b-dc3b-4226-90e5-8a1033802422",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "7eb9be7a-8940-4201-9297-9ad13e4814a2",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "fa68841e-b8dd-4971-912b-6499293ff23b",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "3a8fb1da-7950-48cd-83bb-938223c285a9",
+        "_source": {
+            "id": "3a8fb1da-7950-48cd-83bb-938223c285a9",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "72828134-f466-47fa-8caa-cc85d3c1b18e",
+                    "name": "action"
+                },
+                {
+                    "id": "b5630d30-eeba-49c5-a4a1-7f4da081c326",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "5da993e2-25a7-4b4e-a6f6-c5bf63189b81",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "f864ad55-36db-414f-8499-53f15b966039",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "1e42103a-ef16-4530-bb4d-b503051803d0",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "2ceadcdb-e77b-4acf-b9fa-c8761a90bd92",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "9cbeaa0f-3409-4c6c-8e7d-399bc386cf91",
+        "_source": {
+            "id": "9cbeaa0f-3409-4c6c-8e7d-399bc386cf91",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "e719e073-4fb4-4575-b9fb-f3dc4c3761cd",
+                    "name": "action"
+                },
+                {
+                    "id": "257d89ef-f757-42fd-9570-0eba75aeca23",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "ada1a4e9-8d49-45c4-84fe-6a7c4412b2e1",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "be892a79-93c7-4550-a2b0-1cc39a8d3de0",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "4cc7b23b-f0df-409d-aef8-8d30a5323f7a",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "e0701530-48f2-4dcc-9e23-4e67fcd0b9dc",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "088cb891-6672-4ca2-893e-4d1826ad94e4",
+        "_source": {
+            "id": "088cb891-6672-4ca2-893e-4d1826ad94e4",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "d7c2f649-7b1d-43fa-886f-5ae53841a170",
+                    "name": "action"
+                },
+                {
+                    "id": "000f282d-deaf-401f-b365-965e473e40e4",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "46cece4b-9ec0-4cb3-a94d-7f9d975be451",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "03350938-2d74-456e-ae5d-237145370d21",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "9de115cd-11b3-4350-be21-d0a32702bad5",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "d9f89f75-1bd7-4ce4-9210-4068358365ac",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    },
+    {
+        "_index": "movies",
+        "_id": "8551dc57-8db6-4118-a581-0670df29e69b",
+        "_source": {
+            "id": "8551dc57-8db6-4118-a581-0670df29e69b",
+            "imdb_rating": 8.9,
+            "title": "The star",
+            "description": "A film about a star",
+            "type": "movie",
+            "genres_names": [
+                "action",
+                "drama"
+            ],
+            "directors_names": [
+                "Angela Turner"
+            ],
+            "actors_names": [
+                "Gilby Clarke",
+                "Barbara Church"
+            ],
+            "writers_names": [
+                "Bernard Baur"
+            ],
+            "genres": [
+                {
+                    "id": "24599f6d-6b4b-4c16-ac69-4625af316b93",
+                    "name": "action"
+                },
+                {
+                    "id": "360dfce2-de88-49f5-81ae-db57ef825f2b",
+                    "name": "drama"
+                }
+            ],
+            "directors": [
+                {
+                    "id": "f133e066-7bec-430a-a1e2-8dad6bc7615c",
+                    "name": "Angela Turner"
+                }
+            ],
+            "actors": [
+                {
+                    "id": "514bb72d-87dd-477b-baaf-06a6463d03c0",
+                    "name": "Gilby Clarke"
+                },
+                {
+                    "id": "09dc9e8f-2f59-497e-9c6a-48d3440a3f25",
+                    "name": "Barbara Church"
+                }
+            ],
+            "writers": [
+                {
+                    "id": "d9f40c3d-5f27-4e67-8409-3f4c56e153ee",
+                    "name": "Bernard Baur"
+                }
+            ]
+        }
+    }
+]
