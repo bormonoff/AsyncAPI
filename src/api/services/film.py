@@ -3,7 +3,7 @@ from typing import Any, Optional
 
 import elasticsearch
 import fastapi
-from db import elastic, redis
+from db import redis, storage
 from models import film as filmmodel
 from models import genre as genremodel
 from models import person as personmodel
@@ -14,24 +14,21 @@ FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 min
 
 
 class FilmService:
-    def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
-        self.elastic = elastic
+    def __init__(self, redis: asyncio.Redis, storage: storage.BaseStorage):
+        self.storage = storage
         self.cache_service = cache.CacheService(redis)
 
     async def get_by_id(self, film_id: str) -> Optional[filmmodel.Film]:
         """Optionally return a film from ES."""
         film = await self.cache_service.get_entity_from_cache("film", film_id)
         if not film:
-            film = await self._get_film_from_elastic(film_id)
+            film = await self._get_film_from_storage(film_id)
             await self.cache_service.put_entity_to_cache("film", film)
         return film
 
-    async def _get_film_from_elastic(self, film_id: str) -> Optional[filmmodel.Film]:
-        try:
-            data = await self.elastic.get(index="movies", id=film_id)
-        except elasticsearch.NotFoundError:
-            raise fastapi.HTTPException(status_code=404, detail="Not found")
-        return self._handle_single_movie(data["_source"])
+    async def _get_film_from_storage(self, film_id: str) -> Optional[filmmodel.Film]:
+        data = await self.storage.get_by_id(location="movies", id=film_id)
+        return self._handle_single_movie(data)
 
     async def get_films_sorted_by_field(
         self,
@@ -50,11 +47,12 @@ class FilmService:
         films = await self.cache_service.get_list_from_cache("base_film", field_to_filter, field_to_sort,
                                                              page_size, page_number)
         if not films:
-            request = self._create_request(
+            data = await self.storage.search(
+                location="movies",
                 page_size=page_size, page_number=page_number,
                 field_to_sort=field_to_sort, genre=genre
             )
-            films = await self._get_filmbase_list(request)
+            films = [self._handle_movie(movie["_source"]) for movie in data]
             if not films:
                 return None
             await self.cache_service.put_list_to_cache("base_film", field_to_filter, field_to_sort,
@@ -73,9 +71,14 @@ class FilmService:
         [{uuid: ..., title: ..., imdb_rating}, ...]
 
         """
-        request = self._create_request(page_size=page_size, page_number=page_number, pattern=pattern)
-        result = await self._get_filmbase_list(request)
-        return result
+        data = await self.storage.search(
+            location="movies",
+            page_size=page_size,
+            page_number=page_number,
+            pattern=pattern
+        )
+        films = [self._handle_movie(movie["_source"]) for movie in data]
+        return films
 
     async def get_films_with_person(
         self,
@@ -89,46 +92,14 @@ class FilmService:
         [{uuid: ..., title: ..., imdb_rating}, ...]
 
         """
-        request = self._create_request(page_size=page_size, page_number=page_number, person_name=person_name)
-        result = await self._get_filmbase_list(request)
-        return result
-
-    async def _get_filmbase_list(self, request) -> list[filmmodel.FilmBase]:
-        try:
-            data = await self.elastic.search(**request)
-        except elasticsearch.BadRequestError as ex:
-            raise fastapi.HTTPException(status_code=400, detail=str(ex))
-        result = [self._handle_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
-        if not result:
-            raise fastapi.HTTPException(status_code=404, detail="Not found")
-        return result
-
-    def _create_request(self, **kwargs) -> dict[str, str]:
-        request = {
-            "index": "movies",
-            "size": kwargs["page_size"],
-            "from_": kwargs["page_size"] * (kwargs["page_number"] - 1),
-            "source": ["id", "title", "imdb_rating"],
-        }
-
-        if kwargs.get("field_to_sort"):
-            request["sort"] = {kwargs["field_to_sort"]: {"order": "desc"}}
-        if kwargs.get("genre"):
-            request["query"] = {"match": {"genres_names": kwargs["genre"]}}
-        if kwargs.get("pattern"):
-            request["query"] = {"match": {"title": kwargs["pattern"]}}
-        if kwargs.get("person_name"):
-            request["query"] = {
-                "bool": {
-                    "should": [
-                        {"match": {"directors_names": kwargs["person_name"]}},
-                        {"match": {"actors_names": kwargs["person_name"]}},
-                        {"match": {"writers_names": kwargs["person_name"]}},
-                    ]
-                }
-            }
-
-        return request
+        data = await self.storage.search(
+            location="movies",
+            page_size=page_size,
+            page_number=page_number,
+            person_name=person_name
+        )
+        films = [self._handle_movie(movie["_source"]) for movie in data]
+        return films
 
     def _handle_movie(self, movie: dict[str, Any]) -> filmmodel.FilmBase:
         return filmmodel.FilmBase(
@@ -153,7 +124,6 @@ class FilmService:
 # Use lru_cache decorator to gain service object as a singleton
 @functools.lru_cache()
 def get_film_service(
-        redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
-        elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
+        redis: asyncio.Redis = fastapi.Depends(redis.get_redis)
 ) -> FilmService:
-    return FilmService(redis, elastic)
+    return FilmService(redis, storage.ElasticStorage())
