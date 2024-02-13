@@ -1,48 +1,40 @@
 import functools
 from typing import Any
 
-import elasticsearch
 import fastapi
-from db import elastic, redis
+from db import redis, storage
 from models import person as personmodel
 from redis import asyncio
 from services import cache
 
 
 class PersonService:
-    def __init__(self, redis: asyncio.Redis, elastic: elasticsearch.AsyncElasticsearch):
-        self.elastic = elastic
+    def __init__(self, redis: asyncio.Redis, storage: storage.BaseStorage):
+        self.storage = storage
         self.cache_service = cache.CacheService(redis)
 
     async def get_persons_with_pattern(self, pattern: str, page_size: int, page_number: int
     ) -> list[personmodel.Person]:
         """Return a list of the persons with the pattern.
 
-        Encapsulates elastic specific format and returnes data as a following list:
+        Returnes data as a following list:
         [{uuid: ..., fullname: ..., films: [{uuid}, roles: []], ...]
 
         """
-        request = {
-            "index": "persons",
-            "size": page_size,
-            "from_": page_size * (page_number - 1),
-            "query": {"match": {"fullname": pattern}},
-        }
-        data = await self.elastic.search(**request)
-        if not data["hits"]["hits"]:
-            raise fastapi.HTTPException(status_code=404, detail="Not found")
-        result = [self._transform_movie(movie["_source"]) for movie in data.body["hits"]["hits"]]
+        data = await self.storage.search(
+            location="persons",
+            page_size=page_size,
+            page_number=page_number,
+            full_name=pattern
+        )
+        result = [self._transform_movie(movie["_source"]) for movie in data]
         return result
 
     async def get_person_with_id(self, person_id: str) -> personmodel.Person:
-
         person = await self.cache_service.get_entity_from_cache("person", person_id)
         if not person:
-            try:
-                person = await self.elastic.get(index="persons", id=person_id)
-            except elasticsearch.NotFoundError:
-                raise fastapi.HTTPException(status_code=404, detail="Not found")
-            person = self._transform_movie(person["_source"])
+            person = await self.storage.get_by_id(location="persons", id=person_id)
+            person = self._transform_movie(person)
             await self.cache_service.put_entity_to_cache("person", person)
         return person
 
@@ -58,7 +50,6 @@ class PersonService:
 @functools.lru_cache()
 def get_person_service(
         redis: asyncio.Redis = fastapi.Depends(redis.get_redis),
-        elastic: elasticsearch.AsyncElasticsearch = fastapi.Depends(elastic.get_elastic),
 ) -> PersonService:
-    return PersonService(redis, elastic)
+    return PersonService(redis, storage.ElasticStorage())
 

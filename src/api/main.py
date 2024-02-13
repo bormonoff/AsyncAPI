@@ -1,13 +1,12 @@
 import contextlib
 import logging
 
-import elasticsearch
 import fastapi
 import metadata
 import uvicorn
 from core import config
 from core.logger import LOGGING
-from db import elastic, redis
+from db import redis
 from fastapi import responses
 from redis import asyncio
 
@@ -17,10 +16,8 @@ from api.v1 import films, genres, persons
 @contextlib.asynccontextmanager
 async def lifespan(app: fastapi.FastAPI):
     redis.redis = asyncio.Redis(host=config.settings.REDIS_HOST, port=config.settings.REDIS_PORT)
-    elastic.es = elasticsearch.AsyncElasticsearch(config.settings.ELASTIC_DSN)
     yield
     await redis.redis.close()
-    await elastic.es.close()
 
 
 app = fastapi.FastAPI(
