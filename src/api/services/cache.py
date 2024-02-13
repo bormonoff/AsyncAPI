@@ -53,6 +53,8 @@ class CacheService:
                              CACHE_EXPIRE_IN_SECONDS,
                              )
 
+    # entity.model_dump_json(by_alias=True),
+
     async def get_entity_from_cache(
         self,
         entity_name: str,

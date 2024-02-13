@@ -30,5 +30,5 @@ You will be able to:
 ## Genres
 You can:
 * get list of genres
-* get a particular genre by its name
+* get a particular genre by its uuid
 """
